@@ -175,7 +175,7 @@ public class GameManager : MonoBehaviour
         }
 
         var userRef = Instantiate(_userPrefab, spawnPosition.transform.position, _userPrefab.transform.rotation);
-        User user = userRef.GetComponentInChildren<User>();
+        UserBase user = userRef.GetComponentInChildren<UserBase>();
         if (!runner)
         {
             spawnedFloor.InsertUser(user);

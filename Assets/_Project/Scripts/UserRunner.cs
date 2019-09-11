@@ -5,15 +5,6 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class UserRunner : UserBase
 {
-    public delegate void UserTransportedHandler(UserBase user);
-    public UserTransportedHandler OnUserTransported;
-
-    public delegate void UserDiedHandler();
-    public UserDiedHandler OnUserDied;
-
-    public delegate void ReachedDestinationHandler(UserBase user);
-    public ReachedDestinationHandler OnReachedDestination;
-
     public UICcolorsChanger _uiColorChanger;
 
     [SerializeField] private float _timeToEnterTheElevator = 1;
@@ -30,9 +21,6 @@ public class UserRunner : UserBase
     private Tween _moveToElevatorTween;
     private Tween _moveToWaitPositionTween;
     private FloorData _currentFloor;
-    private FloorData _desiredFloor;
-
-    public int FinalFloor { get { return _desiredFloor.Index; } }
 
     public float movementSpeed = 1f;
 
@@ -52,13 +40,12 @@ public class UserRunner : UserBase
     private bool _moveToDespawn;
     private bool movingForward;
 
-    public GameObject raiva;
     private void Start()
     {
         raiva.SetActive(false);
     }
 
-    public void Spawn(FloorData currentFloor, FloorData desiredFloor, ElevatorController elevator, Material material, GameManager gm, bool isRunner = false)
+    public override void Spawn(FloorData currentFloor, FloorData desiredFloor, ElevatorController elevator, Material material, GameManager gm, bool isRunner = false)
     {
         gm.OnElevatorStoped += ElevatorStoped;
         gm.OnFloorChanged += ElevatorMoved;
@@ -68,7 +55,7 @@ public class UserRunner : UserBase
 
         _elevator = elevator;
         _currentFloor = currentFloor;
-        _desiredFloor = desiredFloor;
+        DesiredFloor = desiredFloor;
         MeshRenderer.material = material;
         _meshRendererRagDoll.material = material;
         _animator = GetComponent<UserAnimator>();
@@ -138,7 +125,7 @@ public class UserRunner : UserBase
     {
         if (_insideTheElevator)
         {
-            if (floorIndex == _desiredFloor.Index)
+            if (floorIndex == DesiredFloor.Index)
             {
                 _transformRoot.SetParent(null);
                 OnUserTransported?.Invoke(this);
@@ -163,7 +150,7 @@ public class UserRunner : UserBase
         _moveToElevator = true;
     }
 
-    internal void SetSpawnPosition(SpawnPosition spawnPosition)
+    public override void SetSpawnPosition(SpawnPosition spawnPosition)
     {
         _mySpawnPosition = spawnPosition;
     }

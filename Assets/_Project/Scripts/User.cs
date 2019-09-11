@@ -45,7 +45,7 @@ public class User : UserBase
         raiva.SetActive(false);
     }
 
-    public void Spawn(FloorData currentFloor, FloorData desiredFloor, ElevatorController elevator, Material material, GameManager gm, bool isRunner = false)
+    public override void Spawn(FloorData currentFloor, FloorData desiredFloor, ElevatorController elevator, Material material, GameManager gm, bool isRunner = false)
     {
         gm.OnElevatorStoped += ElevatorStoped;
         gm.OnFloorChanged += ElevatorMoved;
@@ -150,7 +150,7 @@ public class User : UserBase
         _moveToElevator = true;
     }
 
-    internal void SetSpawnPosition(SpawnPosition spawnPosition)
+    public override void SetSpawnPosition(SpawnPosition spawnPosition)
     {
         _mySpawnPosition = spawnPosition;
     }

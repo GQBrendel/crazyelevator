@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,4 +22,12 @@ public class UserBase : MonoBehaviour
     [SerializeField] private SkinnedMeshRenderer m_MeshRenderer;
     public SkinnedMeshRenderer MeshRenderer { get { return m_MeshRenderer; } }
     public int FinalFloor { get { return DesiredFloor.Index; } }
+
+    public virtual void SetSpawnPosition(SpawnPosition spawnPosition)
+    {
+    }
+
+    public virtual void Spawn(FloorData spawnedFloor, FloorData desiredFloor, ElevatorController elevator, Material material, GameManager gameManager, bool runner)
+    {
+    }
 }
