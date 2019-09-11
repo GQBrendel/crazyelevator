@@ -1,5 +1,4 @@
 ﻿using DG.Tweening;
-using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -16,7 +15,6 @@ public class User : UserBase
     private UserAnimator _animator;
 
     public bool _ragDoll;
-    public bool IsRunner;
 
     private Tween _moveToElevatorTween;
     private Tween _moveToWaitPositionTween;
@@ -45,13 +43,11 @@ public class User : UserBase
         raiva.SetActive(false);
     }
 
-    public override void Spawn(FloorData currentFloor, FloorData desiredFloor, ElevatorController elevator, Material material, GameManager gm, bool isRunner = false)
+    public override void Spawn(FloorData currentFloor, FloorData desiredFloor, ElevatorController elevator, Material material, GameManager gm)
     {
         gm.OnElevatorStoped += ElevatorStoped;
         gm.OnFloorChanged += ElevatorMoved;
         gm.OnFailedToGetPosition += HandleCrowdedFloor;
-
-        IsRunner = isRunner;
 
         _elevator = elevator;
         _currentFloor = currentFloor;
@@ -62,24 +58,9 @@ public class User : UserBase
         _rigidbody = GetComponent<Rigidbody>();
         _uiColorChanger = FindObjectOfType<UICcolorsChanger>();
 
-
-        if (IsRunner)
-        {
-            _animator.Run();
-        }
-        else
-        {
-            _myWaitPosition = currentFloor.WaitPos;
-            _animator.Walk();
-        }
-        if (IsRunner)
-        {
-            RunToDeath();
-        }
-        else
-        {
-            MoveToWaitPos(_myWaitPosition);
-        }
+        _myWaitPosition = currentFloor.WaitPos;
+        _animator.Walk();
+        MoveToWaitPos(_myWaitPosition);
     }
     bool _runToDeath;
     private void RunToDeath()
@@ -105,7 +86,6 @@ public class User : UserBase
 
     private void CheckElevator()
     {
-        //_animator.Idle();
         _reachedWaitPos = true;
         if (_elevator.IsStopedOnTheFloor(_currentFloor.Index))
         {
@@ -170,27 +150,7 @@ public class User : UserBase
         _moveToElevatorTween.Kill();
     }
     private void OnTriggerEnter(Collider other)
-    {
-        if (IsRunner)
-        {           
-            if (other.CompareTag("ElevatorDoor"))
-            {
-                if (!_insideTheElevator && (_elevator.IsStopedOnTheFloor(_currentFloor.Index)) && _elevator.HasRoom)
-                {
-                    StopMovement();
-                    IsRunner = false;
-                    _animator.Idle();
-                    HandleInsideElevator();
-                }
-                else
-                {
-                    _ragDoll = true;
-                    AudioManager.instance.Play("Fall");
-                    OnUserDied?.Invoke();
-                }
-            }
-            return;
-        }
+    {       
         if (other.CompareTag("ElevatorDoor") )
         {
             if (!_insideTheElevator && !_moveToDespawn)

@@ -16,7 +16,6 @@ public class UserRunner : UserBase
     private UserAnimator _animator;
 
     public bool _ragDoll;
-    public bool IsRunner;
 
     private Tween _moveToElevatorTween;
     private Tween _moveToWaitPositionTween;
@@ -45,13 +44,11 @@ public class UserRunner : UserBase
         raiva.SetActive(false);
     }
 
-    public override void Spawn(FloorData currentFloor, FloorData desiredFloor, ElevatorController elevator, Material material, GameManager gm, bool isRunner = false)
+    public override void Spawn(FloorData currentFloor, FloorData desiredFloor, ElevatorController elevator, Material material, GameManager gm)
     {
         gm.OnElevatorStoped += ElevatorStoped;
         gm.OnFloorChanged += ElevatorMoved;
         gm.OnFailedToGetPosition += HandleCrowdedFloor;
-
-        IsRunner = isRunner;
 
         _elevator = elevator;
         _currentFloor = currentFloor;
@@ -61,25 +58,8 @@ public class UserRunner : UserBase
         _animator = GetComponent<UserAnimator>();
         _rigidbody = GetComponent<Rigidbody>();
         _uiColorChanger = FindObjectOfType<UICcolorsChanger>();
-
-
-        if (IsRunner)
-        {
-            _animator.Run();
-        }
-        else
-        {
-            _myWaitPosition = currentFloor.WaitPos;
-            _animator.Walk();
-        }
-        if (IsRunner)
-        {
-            RunToDeath();
-        }
-        else
-        {
-            MoveToWaitPos(_myWaitPosition);
-        }
+        _animator.Run();
+        RunToDeath();
     }
     bool _runToDeath;
     private void RunToDeath()
@@ -171,26 +151,24 @@ public class UserRunner : UserBase
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (IsRunner)
+        if (other.CompareTag("ElevatorDoor"))
         {
-            if (other.CompareTag("ElevatorDoor"))
+            if (!_insideTheElevator && (_elevator.IsStopedOnTheFloor(_currentFloor.Index)) && _elevator.HasRoom)
             {
-                if (!_insideTheElevator && (_elevator.IsStopedOnTheFloor(_currentFloor.Index)) && _elevator.HasRoom)
-                {
-                    StopMovement();
-                    IsRunner = false;
-                    _animator.Idle();
-                    HandleInsideElevator();
-                }
-                else
-                {
-                    _ragDoll = true;
-                    AudioManager.instance.Play("Fall");
-                    OnUserDied?.Invoke();
-                }
+                StopMovement();
+                _animator.Idle();
+                HandleInsideElevator();
             }
-            return;
+            else
+            {
+                _ragDoll = true;
+                AudioManager.instance.Play("Fall");
+                OnUserDied?.Invoke();
+            }
         }
+//        return;
+        
+        /*
         if (other.CompareTag("ElevatorDoor"))
         {
             if (!_insideTheElevator && !_moveToDespawn)
@@ -207,7 +185,7 @@ public class UserRunner : UserBase
                     OnUserDied?.Invoke();
                 }
             }
-        }
+        }*/
     }
     public float yOffset = -0.51f;
 

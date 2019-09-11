@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.352952, g: 0.5736748, b: 0.8686569, a: 1}
+  m_IndirectSpecularColor: {r: 0.3529284, g: 0.5736776, b: 0.8686604, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5359,6 +5359,12 @@ PrefabInstance:
       propertyPath: _deathImage3
       value: 
       objectReference: {fileID: 1338275144}
+    - target: {fileID: 6587969429099396329, guid: ba1e8966c8d80af4d9679a301b569a0b,
+        type: 3}
+      propertyPath: _userRunnerPrefab
+      value: 
+      objectReference: {fileID: 4638247217080730651, guid: 41f28f68fa4668d419071a955d435f96,
+        type: 3}
     - target: {fileID: 6587969429099396335, guid: ba1e8966c8d80af4d9679a301b569a0b,
         type: 3}
       propertyPath: ScoreText

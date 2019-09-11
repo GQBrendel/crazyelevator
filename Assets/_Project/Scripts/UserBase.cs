@@ -27,7 +27,7 @@ public class UserBase : MonoBehaviour
     {
     }
 
-    public virtual void Spawn(FloorData spawnedFloor, FloorData desiredFloor, ElevatorController elevator, Material material, GameManager gameManager, bool runner)
+    public virtual void Spawn(FloorData spawnedFloor, FloorData desiredFloor, ElevatorController elevator, Material material, GameManager gameManager)
     {
     }
 }

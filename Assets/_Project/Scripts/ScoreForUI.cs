@@ -54,7 +54,7 @@ public class ScoreForUI : MonoBehaviour
             GetComponent<Animator>().SetBool("Fly", true);
 
 //            GetComponent<CapsuleCollider>().enabled = false;
-            GetComponent<User>().enabled = false;
+            GetComponent<UserBase>().enabled = false;
             gameObject.layer = 10;
         }
 

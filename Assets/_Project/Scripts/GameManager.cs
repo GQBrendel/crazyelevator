@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     private int _elevatorIndex = 3;
 
     [SerializeField] private GameObject _userPrefab;
+    [SerializeField] private GameObject _userRunnerPrefab;
     [SerializeField] private ElevatorController _elevator;
     [SerializeField] private Button _restartButton;
     [SerializeField] private FloorData[] _floors;
@@ -173,12 +174,19 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
-
-        var userRef = Instantiate(_userPrefab, spawnPosition.transform.position, _userPrefab.transform.rotation);
-        UserBase user = userRef.GetComponentInChildren<UserBase>();
-        if (!runner)
+        UserBase user = null;
+        if (runner)
         {
+            var userRef = Instantiate(_userRunnerPrefab, spawnPosition.transform.position, _userRunnerPrefab.transform.rotation);
+            user = userRef.GetComponentInChildren<UserBase>();
+        }
+        else
+        {
+            var userRef = Instantiate(_userPrefab, spawnPosition.transform.position, _userPrefab.transform.rotation);
+            user = userRef.GetComponentInChildren<UserBase>();
+
             spawnedFloor.InsertUser(user);
+
         }
         user.OnUserTransported += HandleUserTransported;
         user.OnUserDied += HandleUserLosted;
@@ -186,7 +194,7 @@ public class GameManager : MonoBehaviour
         user.SetSpawnPosition(spawnPosition);
 
         _spawnedUsers++;
-        user.Spawn(spawnedFloor, desiredFloor, _elevator, _charactersMaterials[desiredFloorIndex], this, runner);
+        user.Spawn(spawnedFloor, desiredFloor, _elevator, _charactersMaterials[desiredFloorIndex], this);
     }
 
     private void HandleRestartButtonClicked()
