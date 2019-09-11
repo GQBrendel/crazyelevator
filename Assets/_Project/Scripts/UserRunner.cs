@@ -5,13 +5,13 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class UserRunner : UserBase
 {
-    public delegate void UserTransportedHandler(User user);
+    public delegate void UserTransportedHandler(UserBase user);
     public UserTransportedHandler OnUserTransported;
 
     public delegate void UserDiedHandler();
     public UserDiedHandler OnUserDied;
 
-    public delegate void ReachedDestinationHandler(User user);
+    public delegate void ReachedDestinationHandler(UserBase user);
     public ReachedDestinationHandler OnReachedDestination;
 
     public UICcolorsChanger _uiColorChanger;
@@ -25,6 +25,7 @@ public class UserRunner : UserBase
     private UserAnimator _animator;
 
     public bool _ragDoll;
+    public bool IsRunner;
 
     private Tween _moveToElevatorTween;
     private Tween _moveToWaitPositionTween;
@@ -51,11 +52,19 @@ public class UserRunner : UserBase
     private bool _moveToDespawn;
     private bool movingForward;
 
-    public void Spawn(FloorData currentFloor, FloorData desiredFloor, ElevatorController elevator, Material material, GameManager gm)
+    public GameObject raiva;
+    private void Start()
+    {
+        raiva.SetActive(false);
+    }
+
+    public void Spawn(FloorData currentFloor, FloorData desiredFloor, ElevatorController elevator, Material material, GameManager gm, bool isRunner = false)
     {
         gm.OnElevatorStoped += ElevatorStoped;
         gm.OnFloorChanged += ElevatorMoved;
         gm.OnFailedToGetPosition += HandleCrowdedFloor;
+
+        IsRunner = isRunner;
 
         _elevator = elevator;
         _currentFloor = currentFloor;
@@ -66,16 +75,31 @@ public class UserRunner : UserBase
         _rigidbody = GetComponent<Rigidbody>();
         _uiColorChanger = FindObjectOfType<UICcolorsChanger>();
 
-        _myWaitPosition = currentFloor.WaitPos;
 
-        _animator.Run();
-
-
-        Vector3 destinationPos = new Vector3(_myWaitPosition.transform.position.x, _transformRoot.position.y, _transformRoot.position.z);
-
-        MoveToWaitPos(_myWaitPosition);
-
+        if (IsRunner)
+        {
+            _animator.Run();
+        }
+        else
+        {
+            _myWaitPosition = currentFloor.WaitPos;
+            _animator.Walk();
+        }
+        if (IsRunner)
+        {
+            RunToDeath();
+        }
+        else
+        {
+            MoveToWaitPos(_myWaitPosition);
+        }
     }
+    bool _runToDeath;
+    private void RunToDeath()
+    {
+        _runToDeath = true;
+    }
+
     public void MoveToWaitPos(WaitPosition destination)
     {
         _reachedWaitPos = false;
@@ -117,8 +141,8 @@ public class UserRunner : UserBase
             if (floorIndex == _desiredFloor.Index)
             {
                 _transformRoot.SetParent(null);
-               // OnUserTransported?.Invoke(this);
-               // _uiColorChanger.UserExitedElevator(this);
+                OnUserTransported?.Invoke(this);
+                _uiColorChanger.UserExitedElevator(this);
                 _elevator.CarriedUsers--;
                 _elevator.UserLeavedElevator(this);
                 _moveToElevator = false;
@@ -149,7 +173,7 @@ public class UserRunner : UserBase
         _elevator.CarriedUsers++;
         _elevator.UserEnteredElevator(this);
         _insideTheElevator = true;
-        //_uiColorChanger.UserEnteredTheElevator(this);
+        _uiColorChanger.UserEnteredTheElevator(this);
         _transformRoot.SetParent(_elevator.transform);
     }
 
@@ -160,17 +184,41 @@ public class UserRunner : UserBase
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (_kamikaze)
+        if (IsRunner)
         {
+            if (other.CompareTag("ElevatorDoor"))
+            {
+                if (!_insideTheElevator && (_elevator.IsStopedOnTheFloor(_currentFloor.Index)) && _elevator.HasRoom)
+                {
+                    StopMovement();
+                    IsRunner = false;
+                    _animator.Idle();
+                    HandleInsideElevator();
+                }
+                else
+                {
+                    _ragDoll = true;
+                    AudioManager.instance.Play("Fall");
+                    OnUserDied?.Invoke();
+                }
+            }
             return;
         }
         if (other.CompareTag("ElevatorDoor"))
         {
             if (!_insideTheElevator && !_moveToDespawn)
             {
-                HandleInsideElevator();
-                StopMovement();
-                //transform.position = _elevator.transform.position;
+                if (_elevator.IsStopedOnTheFloor(_currentFloor.Index) && _elevator.HasRoom)
+                {
+                    HandleInsideElevator();
+                    StopMovement();
+                }
+                else
+                {
+                    _ragDoll = true;
+                    AudioManager.instance.Play("Fall");
+                    OnUserDied?.Invoke();
+                }
             }
         }
     }
@@ -183,6 +231,18 @@ public class UserRunner : UserBase
             _ragDollObject.SetActive(true);
             gameObject.SetActive(false);
         }
+
+        if (_runToDeath)
+        {
+            Vector3 destinationPos = new Vector3(_elevator.transform.position.x, _transformRoot.position.y, _transformRoot.position.z);
+
+            if (!_insideTheElevator)
+            {
+                _transformRoot.position += Vector3.right * Time.deltaTime * movementSpeed * 5;
+            }
+            return;
+        }
+
 
         if (_transformRoot.parent == _elevator.transform)
         {
@@ -197,15 +257,17 @@ public class UserRunner : UserBase
             {
                 _animator.Idle();
                 _reachedWaitPos = true;
-              //  OnReachedDestination?.Invoke(this);
+                OnReachedDestination?.Invoke(this);
             }
             if (!_reachedWaitPos)
             {
+                _animator.Walk();
                 _transformRoot.position += Vector3.right * Time.deltaTime * movementSpeed;
             }
         }
         if (_moveToElevator)
         {
+            _animator.Walk();
             Vector3 destinationPos = new Vector3(_elevator.transform.position.x, _transformRoot.position.y, _transformRoot.position.z);
 
             if (!_insideTheElevator)

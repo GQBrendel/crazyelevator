@@ -6,16 +6,16 @@ using UnityEngine.UI;
 
 public class UICcolorsChanger : MonoBehaviour
 {
-    [SerializeField] private List<User> _users;
+    [SerializeField] private List<UserBase> _users;
     [SerializeField] private List<Material> _colors;
     [SerializeField] private Image[] _images;
 
-    public void UserEnteredTheElevator(User user)
+    public void UserEnteredTheElevator(UserBase user)
     {
         _users.Add(user);
         UpdateUI();
     }
-    public void UserExitedElevator(User user)
+    public void UserExitedElevator(UserBase user)
     {
         _users.Remove(user);
         UpdateUI();

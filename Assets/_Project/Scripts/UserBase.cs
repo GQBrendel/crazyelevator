@@ -4,6 +4,21 @@ using UnityEngine;
 
 public class UserBase : MonoBehaviour
 {
+
+    public delegate void UserTransportedHandler(UserBase user);
+    public UserTransportedHandler OnUserTransported;
+
+    public delegate void UserDiedHandler();
+    public UserDiedHandler OnUserDied;
+
+    public delegate void ReachedDestinationHandler(UserBase user);
+    public ReachedDestinationHandler OnReachedDestination;
+
+    protected FloorData DesiredFloor { get; set; }
+
+    public GameObject raiva;
+
     [SerializeField] private SkinnedMeshRenderer m_MeshRenderer;
     public SkinnedMeshRenderer MeshRenderer { get { return m_MeshRenderer; } }
+    public int FinalFloor { get { return DesiredFloor.Index; } }
 }

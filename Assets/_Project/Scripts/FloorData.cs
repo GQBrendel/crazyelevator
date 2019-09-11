@@ -12,9 +12,9 @@ public class FloorData : MonoBehaviour
     private ElevatorController _elevator;
     public int Index { get; set; }
 
-    private List<User> _users = new List<User>();
+    private List<UserBase> _users = new List<UserBase>();
 
-    public void InsertUser(User userToAdd)
+    public void InsertUser(UserBase userToAdd)
     {
         userToAdd.OnReachedDestination += HandleUserReachedDestination;
         _users.Add(userToAdd);
@@ -48,7 +48,7 @@ public class FloorData : MonoBehaviour
     {
         return _users.Count;
     }
-    private void HandleUserReachedDestination(User user)
+    private void HandleUserReachedDestination(UserBase user)
     {
         if (!_elevator.HasRoom)
         {
@@ -102,6 +102,7 @@ public class FloorData : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
 
+
         if (!_elevator.HasRoom)
         {
             yield break;
@@ -114,18 +115,20 @@ public class FloorData : MonoBehaviour
         {
             yield break;
         }
-        if (!_users[0].ReadyToEnterInElevator())
+        User firstInLine = _users[0] as User;
+        if (!firstInLine.ReadyToEnterInElevator())
         {
             yield break;
         }
-        _users[0].MoveToElevator();
-        _users[0].raiva.SetActive(false);
+        firstInLine.MoveToElevator();
+        firstInLine.raiva.SetActive(false);
         _users.Remove(_users[0]);
 
         for (int i = 0; i < _users.Count; i++)
         {
             Debug.Log("Count " + _users.Count);
-            _users[i].MoveToWaitPos(_waitPositions[i]);
+            User currentUser = _users[i] as User;
+            currentUser.MoveToWaitPos(_waitPositions[i]);
             _waitPositions[i].IsFree = false;
             _spawnPositions[i].IsFree = false;
         }

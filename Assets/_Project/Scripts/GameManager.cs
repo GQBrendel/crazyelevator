@@ -206,7 +206,7 @@ public class GameManager : MonoBehaviour
     {
         OnFloorChanged?.Invoke(floorIndex);
     }
-    private void HandleUserTransported(User user)
+    private void HandleUserTransported(UserBase user)
     {
         user.OnUserTransported -= HandleUserTransported;
         user.OnUserDied -= HandleUserLosted;
