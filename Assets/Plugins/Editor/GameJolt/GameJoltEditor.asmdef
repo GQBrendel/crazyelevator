@@ -1,0 +1,8 @@
+{
+    "name": "GameJoltEditor",
+    "references": [
+        "GameJoltRuntime"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": []
+}
