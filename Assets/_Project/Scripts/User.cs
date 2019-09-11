@@ -1,4 +1,5 @@
 ﻿using DG.Tweening;
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -11,6 +12,10 @@ public class User : UserBase
     [SerializeField] private SkinnedMeshRenderer _meshRendererRagDoll;
     [SerializeField] private GameObject _ragDollObject;
     [SerializeField] private Transform _transformRoot;
+    [SerializeField] private float _aliveTime;
+    [SerializeField] [Range(0, 60)] private float _timeUntilAngry;
+    [SerializeField] [Range(0, 20)] private float _timeUntilSuicide;
+
 
     private UserAnimator _animator;
 
@@ -61,11 +66,6 @@ public class User : UserBase
         _myWaitPosition = currentFloor.WaitPos;
         _animator.Walk();
         MoveToWaitPos(_myWaitPosition);
-    }
-    bool _runToDeath;
-    private void RunToDeath()
-    {
-        _runToDeath = true;
     }
 
     public void MoveToWaitPos(WaitPosition destination)
@@ -179,18 +179,6 @@ public class User : UserBase
             gameObject.SetActive(false);
         }
 
-        if (_runToDeath)
-        {
-            Vector3 destinationPos = new Vector3(_elevator.transform.position.x, _transformRoot.position.y, _transformRoot.position.z);
-
-            if (!_insideTheElevator)
-            {
-                _transformRoot.position += Vector3.right * Time.deltaTime * movementSpeed * 5;
-            }
-            return;
-        }
-
-
         if (_transformRoot.parent == _elevator.transform)
         {
             Vector3 Position = new Vector3(0, yOffset, 0);
@@ -205,6 +193,7 @@ public class User : UserBase
                 _animator.Idle();
                 _reachedWaitPos = true;
                 OnReachedDestination?.Invoke(this);
+                _moveForward = false;
             }
             if (!_reachedWaitPos)
             {

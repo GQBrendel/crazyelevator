@@ -2324,21 +2324,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6d3c2b739fca3a4f955dbbc6d21226c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  raiva: {fileID: 8268794838972449585}
+  m_MeshRenderer: {fileID: 4631845458033610138}
   _uiColorChanger: {fileID: 0}
   _timeToEnterTheElevator: 1
   _timeToGoToWaitPos: 4
-  m_MeshRenderer: {fileID: 4631845458033610138}
   _meshRendererRagDoll: {fileID: 2256480247166791254}
   _ragDollObject: {fileID: 1727525405900979153}
   _transformRoot: {fileID: 171672302951321135}
+  _aliveTime: 0
+  _timeUntilAngry: 16.3
+  _timeUntilSuicide: 1.2
   _ragDoll: 0
-  IsRunner: 0
   movementSpeed: 2
   _myWaitPosition: {fileID: 0}
   _mySpawnPosition: {fileID: 0}
   _isInRiskArea: 0
   _insideTheElevator: 0
-  raiva: {fileID: 8268794838972449585}
   yOffset: -0.51
 --- !u!136 &255782801139732355
 CapsuleCollider:
