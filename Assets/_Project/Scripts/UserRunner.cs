@@ -39,11 +39,6 @@ public class UserRunner : UserBase
     private bool _moveToDespawn;
     private bool movingForward;
 
-    private void Start()
-    {
-        raiva.SetActive(false);
-    }
-
     public override void Spawn(FloorData currentFloor, FloorData desiredFloor, ElevatorController elevator, Material material, GameManager gm)
     {
         gm.OnElevatorStoped += ElevatorStoped;

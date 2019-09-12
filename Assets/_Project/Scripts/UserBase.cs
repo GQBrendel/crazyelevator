@@ -17,8 +17,6 @@ public class UserBase : MonoBehaviour
 
     protected FloorData DesiredFloor { get; set; }
 
-    public GameObject raiva;
-
     [SerializeField] private SkinnedMeshRenderer m_MeshRenderer;
     public SkinnedMeshRenderer MeshRenderer { get { return m_MeshRenderer; } }
     public int FinalFloor { get { return DesiredFloor.Index; } }

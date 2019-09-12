@@ -34,7 +34,7 @@ public class FloorData : MonoBehaviour
 
     private IEnumerator UserToleranceCoroutine()
     {
-        yield return new WaitForSeconds(_userToleranceTime);
+        yield return new WaitForSeconds(0);
         if (_impatientUser == null)
         {
             yield break;
@@ -46,7 +46,6 @@ public class FloorData : MonoBehaviour
             yield break;
         }
         _impatientUser.RunToElevator();
-        _impatientUser.raiva.SetActive(false);
         _users.Remove(_users[0]);
 
         for (int i = 0; i < _users.Count; i++)
@@ -129,7 +128,6 @@ public class FloorData : MonoBehaviour
             yield break;
         }
         firstInLine.MoveToElevator();
-        firstInLine.raiva.SetActive(false);
         _users.Remove(_users[0]);
 
         for (int i = 0; i < _users.Count; i++)
@@ -143,24 +141,7 @@ public class FloorData : MonoBehaviour
         _waitPositions[_users.Count].IsFree = true;
         _spawnPositions[_users.Count].IsFree = true;
 
-    }
-    public void UserCommitedSuicide()
-    {
-        User firstInLine = _users[0] as User;
-        firstInLine.raiva.SetActive(false);
-        _users.Remove(_users[0]);
-
-        for (int i = 0; i < _users.Count; i++)
-        {
-            Debug.Log("Count " + _users.Count);
-            User currentUser = _users[i] as User;
-            currentUser.MoveToWaitPos(_waitPositions[i]);
-            _waitPositions[i].IsFree = false;
-            _spawnPositions[i].IsFree = false;
-        }
-        _waitPositions[_users.Count].IsFree = true;
-        _spawnPositions[_users.Count].IsFree = true;
-    }
+    }    
 
     public SpawnPosition RunnerSpawnPos
     {

@@ -1,7 +1,6 @@
 ﻿using DG.Tweening;
 using System.Collections;
 using UnityEngine;
-using DG.Tweening;
 
 [RequireComponent(typeof(Rigidbody))]
 public class User : UserBase
@@ -13,6 +12,7 @@ public class User : UserBase
     [SerializeField] private SkinnedMeshRenderer _meshRendererRagDoll;
     [SerializeField] private GameObject _ragDollObject;
     [SerializeField] private Transform _transformRoot;
+    [SerializeField] private GameObject _warningCanvas;
 
     private bool _isAngry;
 
@@ -45,7 +45,7 @@ public class User : UserBase
 
     private void Start()
     {
-        raiva.SetActive(false);
+        _warningCanvas.SetActive(false);
     }
 
     public override void Spawn(FloorData currentFloor, FloorData desiredFloor, ElevatorController elevator, Material material, GameManager gm)
@@ -115,6 +115,7 @@ public class User : UserBase
     {
         if (_isAngry)
         {
+            _warningCanvas.SetActive(false);
             _animator.EndAngry();
             _transformRoot.DORotate(new Vector3(0, 90, 0), 1.19f, RotateMode.Fast).OnComplete(() => {
                 _animator.Walk();
@@ -138,6 +139,7 @@ public class User : UserBase
     public void RunToElevator()
     {
         _animator.EndAngry();
+        _warningCanvas.SetActive(false);
 
         _transformRoot.DORotate(new Vector3(0, 90, 0), 1.19f, RotateMode.Fast).OnComplete(() => {
             _animator.Run();
@@ -170,10 +172,16 @@ public class User : UserBase
 
     public void StartImpatientState()
     {
-        _transformRoot.DORotate(new Vector3(0, 180, 0), 1.19f, RotateMode.Fast);
+        _transformRoot.DORotate(new Vector3(0, 180, 0), 1.19f, RotateMode.Fast).OnComplete(() => {
+            StartCoroutine(TurnOnWarningCanvas());
+        });
         _isAngry = true;
         _animator.Angry();
-        raiva.SetActive(true);
+    }
+    private IEnumerator TurnOnWarningCanvas()
+    {
+        yield return new WaitForSeconds(1.6f);
+        _warningCanvas.SetActive(true);
     }
 
     private void StopMovement()
