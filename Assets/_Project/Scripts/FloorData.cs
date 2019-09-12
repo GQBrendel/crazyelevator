@@ -34,7 +34,7 @@ public class FloorData : MonoBehaviour
 
     private IEnumerator UserToleranceCoroutine()
     {
-        yield return new WaitForSeconds(0);
+        yield return new WaitForSeconds(_userToleranceTime);
         if (_impatientUser == null)
         {
             yield break;
@@ -47,17 +47,7 @@ public class FloorData : MonoBehaviour
         }
         _impatientUser.RunToElevator();
         _users.Remove(_users[0]);
-
-        for (int i = 0; i < _users.Count; i++)
-        {
-            Debug.Log("Count " + _users.Count);
-            User currentUser = _users[i] as User;
-            currentUser.MoveToWaitPos(_waitPositions[i]);
-            _waitPositions[i].IsFree = false;
-            _spawnPositions[i].IsFree = false;
-        }
-        _waitPositions[_users.Count].IsFree = true;
-        _spawnPositions[_users.Count].IsFree = true;
+        StartCoroutine(DelayUntilMove());
         _impatientUser = null;
 
     }
@@ -130,6 +120,13 @@ public class FloorData : MonoBehaviour
         firstInLine.MoveToElevator();
         _users.Remove(_users[0]);
 
+        StartCoroutine(DelayUntilMove());
+
+    } 
+
+    private IEnumerator DelayUntilMove()
+    {
+        yield return new WaitForSeconds(2f);
         for (int i = 0; i < _users.Count; i++)
         {
             Debug.Log("Count " + _users.Count);
@@ -140,8 +137,7 @@ public class FloorData : MonoBehaviour
         }
         _waitPositions[_users.Count].IsFree = true;
         _spawnPositions[_users.Count].IsFree = true;
-
-    }    
+    }
 
     public SpawnPosition RunnerSpawnPos
     {

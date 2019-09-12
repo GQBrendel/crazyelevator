@@ -18,8 +18,8 @@ public class UserAnimator : MonoBehaviour
     }
     public void Run()
     {
-        _animator.SetBool("isRun", true);
-        _animator.SetBool("isIdle", false);
+        GetComponent<Animator>().SetBool("isRun", true);
+        GetComponent<Animator>().SetBool("isIdle", false);
     }
     public void Idle()
     {
