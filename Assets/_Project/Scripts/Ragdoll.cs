@@ -21,7 +21,7 @@ public class Ragdoll : MonoBehaviour
     {
         if (addForce)
         {
-            rb.AddForce(transform.forward * 100f);
+            rb.AddForce(transform.forward * 150f);
         }
     }
 }

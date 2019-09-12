@@ -177,6 +177,10 @@ public class User : UserBase
     private IEnumerator TurnOnWarningCanvas()
     {
         yield return new WaitForSeconds(1.6f);
+        if (_isAngry)
+        {
+            AudioManager.instance.Play("Growly");
+        }
         _warningCanvas.SetActive(_isAngry);
     }
 
