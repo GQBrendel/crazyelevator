@@ -14,6 +14,9 @@ public class ElevatorController : MonoBehaviour
     [SerializeField] private Arrow _arrow;
     [SerializeField] private List<GameObject> _usersInElevator;
     private Dictionary<UserBase, GameObject> _userToElevatorDictionary;
+    private float _maxY = 31.8541f;
+    private float _minY = 3.100102f;
+
 
     public int CarriedUsers;
     public int MaxCapacity = 4;
@@ -109,7 +112,17 @@ public class ElevatorController : MonoBehaviour
     }
     void OnMouseDrag()
     {
-        Vector3 movePosition = new Vector3(transform.position.x, (GetMouseAsWorldPoint() + _mouseOffset).y, transform.position.z);
+        float yPos = (GetMouseAsWorldPoint() + _mouseOffset).y;
+
+        if(yPos > _maxY)
+        {
+            yPos = _maxY;
+        }
+        if(yPos < _minY)
+        {
+            yPos = _minY;
+        }
+        Vector3 movePosition = new Vector3(transform.position.x, yPos, transform.position.z);
         transform.position = movePosition;
     }
 }
