@@ -41,8 +41,6 @@ public class User : UserBase
     private bool _moveToElevator;
     private bool _runToElevator;
 
-    private bool movingForward;
-
     private void Start()
     {
         _warningCanvas.SetActive(false);
@@ -77,10 +75,6 @@ public class User : UserBase
     }
     public bool ReadyToEnterInElevator()
     {
-        if (movingForward)
-        {
-            return false;
-        }
         return _reachedWaitPos;
     }
 
@@ -115,6 +109,7 @@ public class User : UserBase
     {
         if (_isAngry)
         {
+            _isAngry = false;
             _warningCanvas.SetActive(false);
             _animator.EndAngry();
             _transformRoot.DORotate(new Vector3(0, 90, 0), 1.19f, RotateMode.Fast).OnComplete(() => {
@@ -138,6 +133,7 @@ public class User : UserBase
     }
     public void RunToElevator()
     {
+        _isAngry = false;
         _animator.EndAngry();
         _warningCanvas.SetActive(false);
 
@@ -181,7 +177,7 @@ public class User : UserBase
     private IEnumerator TurnOnWarningCanvas()
     {
         yield return new WaitForSeconds(1.6f);
-        _warningCanvas.SetActive(true);
+        _warningCanvas.SetActive(_isAngry);
     }
 
     private void StopMovement()
