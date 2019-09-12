@@ -1,6 +1,7 @@
 ﻿using DG.Tweening;
 using System.Collections;
 using UnityEngine;
+using DG.Tweening;
 
 [RequireComponent(typeof(Rigidbody))]
 public class User : UserBase
@@ -12,10 +13,8 @@ public class User : UserBase
     [SerializeField] private SkinnedMeshRenderer _meshRendererRagDoll;
     [SerializeField] private GameObject _ragDollObject;
     [SerializeField] private Transform _transformRoot;
-    [SerializeField] private float _aliveTime;
-    [SerializeField] [Range(0, 60)] private float _timeUntilAngry;
-    [SerializeField] [Range(0, 20)] private float _timeUntilSuicide;
 
+    private bool _isAngry;
 
     private UserAnimator _animator;
 
@@ -40,7 +39,8 @@ public class User : UserBase
     private bool _kamikaze;
     private bool _moveForward;
     private bool _moveToElevator;
-    private bool _moveToDespawn;
+    private bool _runToElevator;
+
     private bool movingForward;
 
     private void Start()
@@ -84,15 +84,6 @@ public class User : UserBase
         return _reachedWaitPos;
     }
 
-    private void CheckElevator()
-    {
-        _reachedWaitPos = true;
-        if (_elevator.IsStopedOnTheFloor(_currentFloor.Index))
-        {
-            _animator.Walk();
-        }
-    }
-
     public void ElevatorMoved(int floorIndex)
     {
         if(floorIndex != _currentFloor.Index)
@@ -113,7 +104,7 @@ public class User : UserBase
                 _elevator.CarriedUsers--;
                 _elevator.UserLeavedElevator(this);
                 _moveToElevator = false;
-                _moveToDespawn = true;
+                _runToElevator = false;
                 gameObject.layer = 10;
                 _insideTheElevator = false;
             }
@@ -122,12 +113,45 @@ public class User : UserBase
 
     public void MoveToElevator()
     {
-        _animator.Walk();
-        if (!_reachedWaitPos)
+        if (_isAngry)
         {
-            return;
+            _animator.EndAngry();
+            _transformRoot.DORotate(new Vector3(0, 90, 0), 1.19f, RotateMode.Fast).OnComplete(() => {
+                _animator.Walk();
+                if (!_reachedWaitPos)
+                {
+                    return;
+                }
+                _moveToElevator = true;
+            });
         }
-        _moveToElevator = true;
+        else
+        {
+            _animator.Walk();
+            if (!_reachedWaitPos)
+            {
+                return;
+            }
+            _moveToElevator = true;
+        }
+    }
+    public void RunToElevator()
+    {
+        _animator.EndAngry();
+
+        _transformRoot.DORotate(new Vector3(0, 90, 0), 1.19f, RotateMode.Fast).OnComplete(() => {
+            _animator.Run();
+            if (!_reachedWaitPos)
+            {
+                return;
+            }
+            StartCoroutine(DelayUntilRun());
+        });
+    }
+    private IEnumerator DelayUntilRun()
+    {
+        yield return new WaitForSeconds(0.2f);
+        _runToElevator = true;
     }
 
     public override void SetSpawnPosition(SpawnPosition spawnPosition)
@@ -144,16 +168,23 @@ public class User : UserBase
         _transformRoot.SetParent(_elevator.transform);
     }
 
+    public void StartImpatientState()
+    {
+        _transformRoot.DORotate(new Vector3(0, 180, 0), 1.19f, RotateMode.Fast);
+        _isAngry = true;
+        _animator.Angry();
+        raiva.SetActive(true);
+    }
+
     private void StopMovement()
     {
-       // _animator.Idle();
         _moveToElevatorTween.Kill();
     }
     private void OnTriggerEnter(Collider other)
     {       
         if (other.CompareTag("ElevatorDoor") )
         {
-            if (!_insideTheElevator && !_moveToDespawn)
+            if (!_insideTheElevator)
             {
                 if(_elevator.IsStopedOnTheFloor(_currentFloor.Index) && _elevator.HasRoom)
                 {
@@ -211,10 +242,15 @@ public class User : UserBase
                 _transformRoot.position += Vector3.right * Time.deltaTime * movementSpeed;
             }
         }
-        if (_moveToDespawn)
+        if (_runToElevator)
         {
-            _transformRoot.LookAt(_mySpawnPosition.transform);
-            _transformRoot.position += Vector3.left * Time.deltaTime * movementSpeed*4;
+            _animator.Run();
+            Vector3 destinationPos = new Vector3(_elevator.transform.position.x, _transformRoot.position.y, _transformRoot.position.z);
+
+            if (!_insideTheElevator)
+            {
+                _transformRoot.position += Vector3.right * Time.deltaTime * movementSpeed*2;
+            }
         }
     }
     private void HandleCrowdedFloor(int floorIndex, WaitPosition waitPosition)

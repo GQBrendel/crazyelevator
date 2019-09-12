@@ -39,13 +39,13 @@ public class FloorData : MonoBehaviour
         {
             yield break;
         }
-        _impatientUser.raiva.SetActive(true);
+        _impatientUser.StartImpatientState();
         yield return new WaitForSeconds(_userDieTime);
         if (_impatientUser == null)
         {
             yield break;
         }
-        _impatientUser.MoveToElevator();
+        _impatientUser.RunToElevator();
         _impatientUser.raiva.SetActive(false);
         _users.Remove(_users[0]);
 
