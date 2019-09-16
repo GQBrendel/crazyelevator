@@ -22,29 +22,17 @@ public class ScoreForUI : MonoBehaviour
         _flyDestination = GameObject.FindGameObjectWithTag("ScoreBox");
         rb = GetComponent<Rigidbody>();
     }
-    void Update()
-    {
-        if(flyToHud)
-        {
-            directionHud = -(transform.position - new Vector3(-score.position.x,score.position.y,score.position.z)).normalized;
-            
-            transform.LookAt(directionHud);
-            rb.velocity = new Vector2 (directionHud.x,directionHud.y)*_speed*(Time.time /timeStamp);
-        }
-    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "TestUI")
         {
             timeStamp = Time.time;
-            score = GameObject.Find("Image").transform;
-            // flyToHud = true;
 
             transform.LookAt(_flyDestination.transform);
-            Tween t = transform.DOMove(_flyDestination.transform.position, 3f).OnComplete(() => 
+            Tween t = transform.DOMove(_flyDestination.transform.position, 2f).OnComplete(() => 
             {
-                scoreManager.AddScore(GetComponent<User>());
+                scoreManager.AddScore(GetComponent<UserBase>());
                 Destroy(gameObject);
             });
 

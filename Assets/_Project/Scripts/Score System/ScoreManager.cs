@@ -7,18 +7,21 @@ using DG.Tweening;
 
 public class ScoreManager : MonoBehaviour
 {
+    public delegate void UserScoredHandler();
+    public UserScoredHandler OnUserScored;
+
     public Text ScoreText;
     public Text ScoreTextFinal;
     public int userScoreValue = 100;
     public int CurrentScore;
 
-    private List<User> _userList0 = new List<User>();
-    private List<User> _userList1 = new List<User>();
-    private List<User> _userList2 = new List<User>();
-    private List<User> _userList3 = new List<User>();
-    private List<User> _userList4 = new List<User>();
-    private List<User> _userList5 = new List<User>();
-    private List<List<User>> _listOfLists = new List<List<User>>();
+    private List<UserBase> _userList0 = new List<UserBase>();
+    private List<UserBase> _userList1 = new List<UserBase>();
+    private List<UserBase> _userList2 = new List<UserBase>();
+    private List<UserBase> _userList3 = new List<UserBase>();
+    private List<UserBase> _userList4 = new List<UserBase>();
+    private List<UserBase> _userList5 = new List<UserBase>();
+    private List<List<UserBase>> _listOfLists = new List<List<UserBase>>();
 
     [SerializeField] private Text _combo;
 
@@ -33,7 +36,7 @@ public class ScoreManager : MonoBehaviour
         _listOfLists.Add(_userList4);
         _listOfLists.Add(_userList5);
     }
-    public void AddScore(User user)
+    public void AddScore(UserBase user)
     {
         switch (user.FinalFloor)
         {
@@ -108,5 +111,6 @@ public class ScoreManager : MonoBehaviour
         }
         ScoreText.text = CurrentScore.ToString();
         ScoreTextFinal.text = CurrentScore.ToString();
+        OnUserScored?.Invoke();
     }
 }

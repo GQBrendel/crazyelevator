@@ -23,18 +23,18 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Button _restartButton;
     [SerializeField] private FloorData[] _floors;
     [SerializeField] private Material[] _charactersMaterials;
-    [SerializeField] private int _usersOnTheLevel = 10;
     [SerializeField] private Text _victoryText;
     [SerializeField] private GameObject _endGamePanel;
     [SerializeField] private GameJoltAPI _gameJolt;
+    [SerializeField] private WaveController _waveController;
 
     ScoreManager _scoreManager;
     private float _randomMin = 3;
     private float _randomMax = 5;
 
-    private ScoreManager scoreManager;
+   // private ScoreManager scoreManager;
 
-    private int _spawnedUsers;
+   // private int _spawnedUsers;
     private int _transportedUsers;
     private int _lostedUsers;
 
@@ -44,16 +44,18 @@ public class GameManager : MonoBehaviour
         _elevator.OnElevatorStoped += HandleElevatorStoped;
         _restartButton.onClick.AddListener(HandleRestartButtonClicked);
         _scoreManager = GetComponent<ScoreManager>();
+        _waveController.OnWaveStarted += HandleWaveStarted;
+        _scoreManager.OnUserScored += HandleUserScored;
     }
     private void Start()
     {
-        scoreManager = FindObjectOfType<ScoreManager>();
+       // scoreManager = FindObjectOfType<ScoreManager>();
         AudioManager.instance.Play("MainSound");
 
         for (int i = 0; i < _floors.Length; i++)
         {
             _floors[i].Index = i;
-        }    
+        }
     }
 
     bool runner = false;
@@ -62,76 +64,84 @@ public class GameManager : MonoBehaviour
     float timer = 0;
     float waitTime = 2;
 
-
-    private void Update()
+    private void HandleWaveStarted()
     {
-        timer += Time.deltaTime;
+        StartCoroutine(SpawnUsersRoutine());
+    }
 
-        if (timer >= waitTime)
+    private IEnumerator SpawnUsersRoutine()
+    {
+        while (_waveController.SpawnedUsers < _waveController.CurrentWaveCount)
         {
-            timer = 0;
-            SpawnUserWithRandomValues(runner);
-            runner = false;
-            waitTime = Random.Range(_randomMin, _randomMax);
+            timer += Time.deltaTime;
 
-            if (scoreManager.CurrentScore > 10000)
+            if (timer >= waitTime)
             {
-                _randomMin = 0.5f;
-                _randomMax = 2f;
-                runner = true;
-            }
-            else if (scoreManager.CurrentScore > 9000)
-            {
-                _randomMin = 1f;
-                _randomMax = 2.5f;
-                runnerChance = Random.Range(0, 100);
-                if (runnerChance < 90)
+                timer = 0;
+                SpawnUserWithRandomValues(runner);
+                runner = false;
+                waitTime = Random.Range(_randomMin, _randomMax);
+
+                if (_scoreManager.CurrentScore > 10000)
                 {
+                    _randomMin = 0.5f;
+                    _randomMax = 2f;
                     runner = true;
                 }
-            }
-            else if (scoreManager.CurrentScore > 7500)
-            {
-                _randomMin = 1.5f;
-                _randomMax = 2.5f;
-                runnerChance = Random.Range(0, 100);
-                if (runnerChance < 70)
+                else if (_scoreManager.CurrentScore > 9000)
                 {
+                    _randomMin = 1f;
+                    _randomMax = 2.5f;
+                    runnerChance = Random.Range(0, 100);
+                    if (runnerChance < 90)
+                    {
+                        runner = true;
+                    }
+                }
+                else if (_scoreManager.CurrentScore > 7500)
+                {
+                    _randomMin = 1.5f;
+                    _randomMax = 2.5f;
+                    runnerChance = Random.Range(0, 100);
+                    if (runnerChance < 70)
+                    {
+                        print(runner);
+                        runner = true;
+                    }
                     print(runner);
-                    runner = true;
                 }
-                print(runner);
-            }
-            else if (scoreManager.CurrentScore > 5000)
-            {
-                _randomMin = 1f;
-                _randomMax = 3f;
-                runnerChance = Random.Range(0, 100);
-                if (runnerChance < 50)
+                else if (_scoreManager.CurrentScore > 5000)
                 {
-                    runner = true;
+                    _randomMin = 1f;
+                    _randomMax = 3f;
+                    runnerChance = Random.Range(0, 100);
+                    if (runnerChance < 50)
+                    {
+                        runner = true;
+                    }
                 }
-            }
-            else if (scoreManager.CurrentScore > 3000)
-            {
-                _randomMin = 1.5f;
-                _randomMax = 3.0f;
-                runnerChance = Random.Range(0, 100);
-                if (runnerChance < 35)
+                else if (_scoreManager.CurrentScore > 3000)
                 {
-                    runner = true;
+                    _randomMin = 1.5f;
+                    _randomMax = 3.0f;
+                    runnerChance = Random.Range(0, 100);
+                    if (runnerChance < 35)
+                    {
+                        runner = true;
+                    }
                 }
-            }
-            else if (scoreManager.CurrentScore > 1000)
-            {
-                _randomMin = 2f;
-                _randomMax = 4f;
-                runnerChance = Random.Range(0, 100);
-                if (runnerChance < 25)
+                else if (_scoreManager.CurrentScore > 1000)
                 {
-                    runner = true;
+                    _randomMin = 2f;
+                    _randomMax = 4f;
+                    runnerChance = Random.Range(0, 100);
+                    if (runnerChance < 25)
+                    {
+                        runner = true;
+                    }
                 }
             }
+            yield return null;
         }
     }
 
@@ -193,7 +203,8 @@ public class GameManager : MonoBehaviour
 
         user.SetSpawnPosition(spawnPosition);
 
-        _spawnedUsers++;
+       // _spawnedUsers++;
+        _waveController.SpawnedUsers++;
         user.Spawn(spawnedFloor, desiredFloor, _elevator, _charactersMaterials[desiredFloorIndex], this);
     }
 
@@ -223,12 +234,23 @@ public class GameManager : MonoBehaviour
     }
     private void HandleUserLosted()
     {
+        SpawnUserWithRandomValues(true);
         _lostedUsers++;
         CheckEndLevel();
     }
     [SerializeField] private Image _deathImage1;
     [SerializeField] private Image _deathImage2;
     [SerializeField] private Image _deathImage3;
+
+    private void HandleUserScored()
+    {
+        _waveController.UpdateUI(_transportedUsers);
+        if (_transportedUsers == _waveController.CurrentWaveCount)
+        {
+            _waveController.CallNextWave();
+            _transportedUsers = 0;
+        }
+    }
 
     private void CheckEndLevel()
     {
