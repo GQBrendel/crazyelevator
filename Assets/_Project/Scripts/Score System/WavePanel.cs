@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class WavePanel : MonoBehaviour
 {
@@ -12,7 +9,16 @@ public class WavePanel : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _panelText;
     [SerializeField] private TextMeshProUGUI _waveText;
     [SerializeField] private TextMeshProUGUI _sliderWaveCount;
-    [SerializeField] private Slider _waveSlider;
+    [SerializeField] private ParticleSystem _bubbleEffect;
+    [SerializeField] private UISlider _uiSlider;
+    private RectTransform _bubbleEffectTransform;
+    private readonly float _bubbleMaxSize = 345f;
+    private float _bubbleXPos = 0;
+
+    private void Awake()
+    {
+        _bubbleEffectTransform = _bubbleEffect.GetComponent<RectTransform>();
+    }
 
     public void AnimationEnded()
     {
@@ -23,6 +29,7 @@ public class WavePanel : MonoBehaviour
     {
         gameObject.SetActive(true);
     }
+    float sliderValue = 0f;
 
     public void UpdateUI(int currentWave, int maxUsers, int scoredUsers)
     {
@@ -30,8 +37,16 @@ public class WavePanel : MonoBehaviour
         _panelText.text = "Wave\n" + currentWave;
         _waveText.text = "Wave: " + currentWave;
         _sliderWaveCount.text = scoredUsers + "/" + maxUsers;
-        float sliderValue = (float)scoredUsers / maxUsers;
-        _waveSlider.value = sliderValue;
+        sliderValue = (float)scoredUsers / maxUsers;
+        _bubbleXPos = _bubbleMaxSize * sliderValue;
+        Debug.Log(_bubbleXPos);
+        if(_bubbleXPos > 0)
+        {
+            _bubbleEffectTransform.anchoredPosition = new Vector3(_bubbleXPos, 0, 0);
+            _bubbleEffect.Play();
+        }
+
+        _uiSlider.UpdateSliderValue(sliderValue);
 
         if (maxUsers == int.MaxValue)
         {
@@ -39,7 +54,6 @@ public class WavePanel : MonoBehaviour
             _waveText.text = "Final Wave";
             _sliderWaveCount.text = scoredUsers + "/∞";
              sliderValue = (sliderValue > 500) ? 500f : (float)scoredUsers / 500f;
-            _waveSlider.value = sliderValue;
         }
     }
 }

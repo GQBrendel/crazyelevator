@@ -5,20 +5,24 @@ using DG.Tweening;
 
 public class ScoreForUI : MonoBehaviour
 {
-    [SerializeField] private float _speed = 3f;
+    [SerializeField] private GameObject _user;
+    [SerializeField] private float _timeToReachScore = 2f;
+
     private GameObject _flyDestination;
     Rigidbody rb;
     bool flyToHud;
     float timeStamp;
     Vector2 directionHud;
-    Transform score;
 
-    private ScoreManager scoreManager;
+    private Transform _rootTransform;
 
+    private ScoreManager _scoreManager;
+   
 
     void Start()
     {
-        scoreManager = FindObjectOfType<ScoreManager>();
+        _rootTransform = GetComponentInParent<Transform>();
+        _scoreManager = FindObjectOfType<ScoreManager>();
         _flyDestination = GameObject.FindGameObjectWithTag("ScoreBox");
         rb = GetComponent<Rigidbody>();
     }
@@ -29,11 +33,11 @@ public class ScoreForUI : MonoBehaviour
         {
             timeStamp = Time.time;
 
-            transform.LookAt(_flyDestination.transform);
-            Tween t = transform.DOMove(_flyDestination.transform.position, 2f).OnComplete(() => 
+            _rootTransform.LookAt(_flyDestination.transform);
+            Tween t = _rootTransform.DOMove(_flyDestination.transform.position, 2f).OnComplete(() => 
             {
-                scoreManager.AddScore(GetComponent<UserBase>());
-                Destroy(gameObject);
+                _scoreManager.AddScore(GetComponent<UserBase>());
+                _user.SetActive(false);
             });
 
             t.SetEase(Ease.Linear);
@@ -41,14 +45,20 @@ public class ScoreForUI : MonoBehaviour
             rb.isKinematic = false;
             GetComponent<Animator>().SetBool("Fly", true);
 
-//            GetComponent<CapsuleCollider>().enabled = false;
             GetComponent<UserBase>().enabled = false;
             gameObject.layer = 10;
         }
 
         if (other.CompareTag("ScoreBox"))
         {
-            Destroy(gameObject);
+            _scoreManager.AddScore(GetComponent<UserBase>());
+            _user.SetActive(false);
         }
+    }
+
+    private IEnumerator SelfDestroy()
+    {
+        yield return new WaitForSeconds(2f);
+        Destroy(gameObject);
     }
 }

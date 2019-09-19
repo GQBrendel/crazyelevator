@@ -27,6 +27,9 @@ public class WaveController : MonoBehaviour
     private void Awake()
     {
         _wavePanel.OnAnimationEnded += HandleAnimationEnded;
+    }
+    private void Start()
+    {
         _wavePanel.UpdateUI(0, CurrentWaveCount, 0);
     }
     private void HandleAnimationEnded()

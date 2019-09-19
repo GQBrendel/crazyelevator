@@ -234,7 +234,7 @@ public class GameManager : MonoBehaviour
     }
     private void HandleUserLosted()
     {
-        SpawnUserWithRandomValues(true);
+        SpawnUserWithRandomValues(false);
         _lostedUsers++;
         CheckEndLevel();
     }
@@ -247,9 +247,14 @@ public class GameManager : MonoBehaviour
         _waveController.UpdateUI(_transportedUsers);
         if (_transportedUsers == _waveController.CurrentWaveCount)
         {
-            _waveController.CallNextWave();
-            _transportedUsers = 0;
+            StartCoroutine(DelayAndCallNextWave());
         }
+    }
+    private IEnumerator DelayAndCallNextWave()
+    {
+        yield return new WaitForSeconds(1f);
+        _waveController.CallNextWave();
+        _transportedUsers = 0;
     }
 
     private void CheckEndLevel()
