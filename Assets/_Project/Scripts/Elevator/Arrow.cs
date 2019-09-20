@@ -20,14 +20,22 @@ public class Arrow : MonoBehaviour
         _startPosition = transform.position;
         _startScale = transform.localScale;
 
-        StartCoroutine(DoTweenAnimation());
+        StartCoroutine(DoTweenAnimationRoutine());
     }
     private void OnDisable()
     {
         StopAllCoroutines();
     }
 
-    private IEnumerator DoTweenAnimation()
+    private void DoTweenAnimation()
+    {
+        if (gameObject.activeInHierarchy)
+        {
+            StartCoroutine(DoTweenAnimationRoutine());
+        }
+    }
+
+    private IEnumerator DoTweenAnimationRoutine()
     {
         yield return null;
         Tween moveUp, moveDown, scale, descale;
@@ -47,13 +55,7 @@ public class Arrow : MonoBehaviour
         scaleSequence.Append(scale);
         scaleSequence.Append(descale);
 
-        moveSequence.Play().OnComplete(() => scaleSequence.Play().OnComplete(() => StartCoroutine(DoTweenAnimation())));
-
-//        transform.DOMove(_topPosition, _duration).OnComplete(() => transform.DOMove(_startPosition, _duration).OnComplete(() => StartCoroutine(DoTweenAnimation())));
-  
-        
-
-        //        transform.DOPunchPosition(Vector3.up, _duration,_vibrato,_elasticity).OnComplete(() => StartCoroutine(DoTweenAnimation()));
+        moveSequence.Play().OnComplete(() => scaleSequence.Play().OnComplete(() => DoTweenAnimation()));
     }
 }
     

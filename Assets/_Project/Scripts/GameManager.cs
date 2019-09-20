@@ -31,10 +31,11 @@ public class GameManager : MonoBehaviour
     ScoreManager _scoreManager;
     private float _randomMin = 3;
     private float _randomMax = 5;
+    private bool _delayAndCallNextWaveRunning;
 
    // private ScoreManager scoreManager;
 
-   // private int _spawnedUsers;
+    // private int _spawnedUsers;
     private int _transportedUsers;
     private int _lostedUsers;
 
@@ -247,14 +248,19 @@ public class GameManager : MonoBehaviour
         _waveController.UpdateUI(_transportedUsers);
         if (_transportedUsers == _waveController.CurrentWaveCount)
         {
-            StartCoroutine(DelayAndCallNextWave());
+            if (!_delayAndCallNextWaveRunning)
+            {
+                StartCoroutine(DelayAndCallNextWave());
+            }
         }
     }
     private IEnumerator DelayAndCallNextWave()
     {
+        _delayAndCallNextWaveRunning = true;
         yield return new WaitForSeconds(1f);
         _waveController.CallNextWave();
         _transportedUsers = 0;
+        _delayAndCallNextWaveRunning = false;
     }
 
     private void CheckEndLevel()
