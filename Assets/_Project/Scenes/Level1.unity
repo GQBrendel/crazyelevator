@@ -309,8 +309,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 85634655}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -93.2, y: 48.9, z: -0.9909}
-  m_LocalScale: {x: 35.091904, y: 18.13532, z: 14.7613325}
+  m_LocalPosition: {x: -86.25, y: 40.81, z: -3}
+  m_LocalScale: {x: 13.9595585, y: 6.1414323, z: 1.1809065}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 15
@@ -6837,6 +6837,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3916755338371968310, guid: accf33c12bc7c4d44879d15cf662c736,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3916755338371968311, guid: accf33c12bc7c4d44879d15cf662c736,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6941,11 +6946,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3916755338371968310, guid: accf33c12bc7c4d44879d15cf662c736,
-        type: 3}
-      propertyPath: playOnAwake
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3916755338371968308, guid: accf33c12bc7c4d44879d15cf662c736,
         type: 3}
@@ -7648,6 +7648,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 9105477719772734639, guid: 587e94bf8c29af74e815713b9601a82d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3966468079137517443, guid: 587e94bf8c29af74e815713b9601a82d,
         type: 3}
       propertyPath: _bubbleEffect
@@ -7773,12 +7778,12 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 147840919296963285, guid: 587e94bf8c29af74e815713b9601a82d,
+    - target: {fileID: 9105477718621545268, guid: 587e94bf8c29af74e815713b9601a82d,
         type: 3}
-      propertyPath: m_IsActive
-      value: 1
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
       objectReference: {fileID: 0}
-    - target: {fileID: 9105477719772734639, guid: 587e94bf8c29af74e815713b9601a82d,
+    - target: {fileID: 147840919296963285, guid: 587e94bf8c29af74e815713b9601a82d,
         type: 3}
       propertyPath: m_IsActive
       value: 1
