@@ -2476,7 +2476,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _user: {fileID: 5255235702670940189}
-  _destroyEffect: {fileID: 0}
   _timeToReachScore: 2
 --- !u!1 &5322901064514807108
 GameObject:

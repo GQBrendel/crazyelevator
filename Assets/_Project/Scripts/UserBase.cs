@@ -21,6 +21,11 @@ public class UserBase : MonoBehaviour
     public SkinnedMeshRenderer MeshRenderer { get { return m_MeshRenderer; } }
     public int FinalFloor { get { return DesiredFloor.Index; } }
 
+    public void TurnInvisible()
+    {
+        MeshRenderer.enabled = false;
+    }
+
     public virtual void SetSpawnPosition(SpawnPosition spawnPosition)
     {
     }

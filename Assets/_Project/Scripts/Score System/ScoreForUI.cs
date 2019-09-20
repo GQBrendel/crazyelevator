@@ -37,7 +37,8 @@ public class ScoreForUI : MonoBehaviour
             Tween t = _rootTransform.DOMove(_flyDestination.transform.position, 2f).OnComplete(() => 
             {
                 _scoreManager.AddScore(GetComponent<UserBase>());
-                _user.SetActive(false);
+                StartCoroutine(SelfDestroy());
+                GetComponent<UserBase>().TurnInvisible();
             });
 
             t.SetEase(Ease.Linear);
@@ -49,16 +50,16 @@ public class ScoreForUI : MonoBehaviour
             gameObject.layer = 10;
         }
 
-        if (other.CompareTag("ScoreBox"))
+        /*if (other.CompareTag("ScoreBox"))
         {
             _scoreManager.AddScore(GetComponent<UserBase>());
             _user.SetActive(false);
-        }
+        }*/
     }
 
     private IEnumerator SelfDestroy()
     {
         yield return new WaitForSeconds(2f);
-        Destroy(gameObject);
+        Destroy(gameObject.transform.parent.gameObject);
     }
 }
