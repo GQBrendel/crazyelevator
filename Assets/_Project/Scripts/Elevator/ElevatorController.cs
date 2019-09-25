@@ -6,9 +6,12 @@ public class ElevatorController : MonoBehaviour
 {
     public delegate void FloorChangeHandler(int floorIndex);
     public delegate void ElevatorStopedHandler(int floorIndex, Vector3 elevatorPos);
+    public delegate void ElevatorCleared();
+    public ElevatorCleared OnElevatorCleared;
     public FloorChangeHandler OnFloorChanged;
     public ElevatorStopedHandler OnElevatorStoped;
 
+    [SerializeField] private GameObject _destroyUserEffectPrefab;
     [SerializeField] private Transform _currentFloorPosition;
     [SerializeField] private int m_currentFloorIndex;
     [SerializeField] private Arrow _arrow;
@@ -17,9 +20,14 @@ public class ElevatorController : MonoBehaviour
     private float _maxY = 31.8541f;
     private float _minY = 3.100102f;
 
+    private Vector3 _mouseOffset;
+    private float _mouseZCoord;
+    private bool _isStoped = true;
 
     public int CarriedUsers;
     public int MaxCapacity = 4;
+
+    public int CurrentFlootIndex { get { return m_currentFloorIndex; } }
     public bool HasRoom { get { return CarriedUsers < MaxCapacity; } }
 
     private void Start()
@@ -52,16 +60,7 @@ public class ElevatorController : MonoBehaviour
         _userToElevatorDictionary.Remove(user);
         leavingUser.gameObject.SetActive(false);
         user.gameObject.SetActive(true);
-    }
-
-    private Vector3 _mouseOffset;
-    private float _mouseZCoord;
-    private bool _isStoped = true;
-
-
-    public int CurrentFlootIndex { get { return m_currentFloorIndex; } }
-
-   
+    }          
 
     public bool IsStopedOnTheFloor(int floorIndex)
     {
@@ -124,5 +123,16 @@ public class ElevatorController : MonoBehaviour
         }
         Vector3 movePosition = new Vector3(transform.position.x, yPos, transform.position.z);
         transform.position = movePosition;
+    }
+    public void ClearElevator()
+    {
+        for (int i = 0; i < CarriedUsers; i++)
+        {
+            _usersInElevator[i].SetActive(false);
+            Instantiate(_destroyUserEffectPrefab, _usersInElevator[i].transform.position, _destroyUserEffectPrefab.transform.rotation);
+        }
+        CarriedUsers = 0;
+        _userToElevatorDictionary.Clear();
+        OnElevatorCleared?.Invoke();
     }
 }

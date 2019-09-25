@@ -18,6 +18,11 @@ public class UserBase : MonoBehaviour
     protected FloorData DesiredFloor { get; set; }
 
     [SerializeField] private SkinnedMeshRenderer m_MeshRenderer;
+    [SerializeField] protected GameObject _destroyEffectPrefab;
+    [SerializeField] protected GameObject _root;
+
+    public bool _ragDoll;
+
     public SkinnedMeshRenderer MeshRenderer { get { return m_MeshRenderer; } }
     public int FinalFloor { get { return DesiredFloor.Index; } }
 
@@ -32,5 +37,17 @@ public class UserBase : MonoBehaviour
 
     public virtual void Spawn(FloorData spawnedFloor, FloorData desiredFloor, ElevatorController elevator, Material material, GameManager gameManager)
     {
+    }
+    public virtual void Despawn()
+    {
+        if (_ragDoll)
+        {
+            return;
+        }
+        if (this)
+        {
+            Instantiate(_destroyEffectPrefab, transform.position, _destroyEffectPrefab.transform.rotation);
+            Destroy(_root);
+        }
     }
 }

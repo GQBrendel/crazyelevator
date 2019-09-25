@@ -2327,6 +2327,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9c6bd46fbc72c94a9e6740a7ae981de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _destroyEffectPrefab: {fileID: 8139914664132196975, guid: 129ceb95cafcbeb4986dd9ed3bc26a5b,
+    type: 3}
+  _root: {fileID: 4638247217080730651}
   m_MeshRenderer: {fileID: 4631845458033610138}
   _uiColorChanger: {fileID: 0}
   _timeToEnterTheElevator: 1

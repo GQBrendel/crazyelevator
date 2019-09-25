@@ -32,6 +32,23 @@ public class FloorData : MonoBehaviour
 
     private User _impatientUser;
 
+    private void Awake()
+    {
+        _spawnPositions = GetComponentsInChildren<SpawnPosition>();
+        _waitPositions = _waitPositionsRef.GetComponentsInChildren<WaitPosition>();
+        _elevator = FindObjectOfType<ElevatorController>();
+        _elevator.OnElevatorCleared += HandleClearFloor;
+    }
+
+    private void HandleClearFloor()
+    {
+        _users.Clear();
+        foreach (var waitPos in _waitPositions)
+        {
+            waitPos.IsFree = true;
+        } 
+    }
+
     private IEnumerator UserToleranceCoroutine()
     {
         yield return new WaitForSeconds(_userToleranceTime);
@@ -78,12 +95,6 @@ public class FloorData : MonoBehaviour
         }
     }
 
-    private void Awake()
-    {
-        _spawnPositions = GetComponentsInChildren<SpawnPosition>();
-        _waitPositions = _waitPositionsRef.GetComponentsInChildren<WaitPosition>();
-        _elevator = FindObjectOfType<ElevatorController>();
-    }
     public void ElevatorStoped()
     {
         StartCoroutine(ElevatorStopedCoroutine());

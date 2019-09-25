@@ -13,9 +13,8 @@ public class UserRunner : UserBase
     [SerializeField] private GameObject _ragDollObject;
     [SerializeField] private Transform _transformRoot;
 
+    private GameManager _gameManager;
     private UserAnimator _animator;
-
-    public bool _ragDoll;
 
     private Tween _moveToElevatorTween;
     private Tween _moveToWaitPositionTween;
@@ -44,6 +43,7 @@ public class UserRunner : UserBase
         gm.OnElevatorStoped += ElevatorStoped;
         gm.OnFloorChanged += ElevatorMoved;
         gm.OnFailedToGetPosition += HandleCrowdedFloor;
+        _gameManager = gm;
 
         _elevator = elevator;
         _currentFloor = currentFloor;
@@ -55,6 +55,18 @@ public class UserRunner : UserBase
         _uiColorChanger = FindObjectOfType<UICcolorsChanger>();
         _animator.Run();
         RunToDeath();
+    }
+    public override void Despawn()
+    {
+        if (_ragDoll)
+        {
+            return;
+        }
+        _uiColorChanger.UserExitedElevator(this);
+        _gameManager.OnElevatorStoped -= ElevatorStoped;
+        _gameManager.OnFloorChanged -= ElevatorMoved;
+        _gameManager.OnFailedToGetPosition -= HandleCrowdedFloor;
+        base.Despawn();
     }
     bool _runToDeath;
     private void RunToDeath()

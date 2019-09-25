@@ -14,11 +14,11 @@ public class User : UserBase
     [SerializeField] private Transform _transformRoot;
     [SerializeField] private GameObject _warningCanvas;
 
+    private GameManager _gameManager;
+
     private bool _isAngry;
 
     private UserAnimator _animator;
-
-    public bool _ragDoll;
 
     private Tween _moveToElevatorTween;
     private Tween _moveToWaitPositionTween;
@@ -52,6 +52,8 @@ public class User : UserBase
         gm.OnFloorChanged += ElevatorMoved;
         gm.OnFailedToGetPosition += HandleCrowdedFloor;
 
+        _gameManager = gm;
+
         _elevator = elevator;
         _currentFloor = currentFloor;
         DesiredFloor = desiredFloor;
@@ -66,6 +68,18 @@ public class User : UserBase
         MoveToWaitPos(_myWaitPosition);
     }
 
+    public override void Despawn()
+    {
+        if (_ragDoll)
+        {
+            return;
+        }
+        _uiColorChanger.UserExitedElevator(this);
+        _gameManager.OnElevatorStoped -= ElevatorStoped;
+        _gameManager.OnFloorChanged -= ElevatorMoved;
+        _gameManager.OnFailedToGetPosition -= HandleCrowdedFloor;
+        base.Despawn();
+    }
     public void MoveToWaitPos(WaitPosition destination)
     {
         _reachedWaitPos = false;

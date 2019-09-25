@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(ScoreManager))]
 public class GameManager : MonoBehaviour
@@ -31,13 +32,15 @@ public class GameManager : MonoBehaviour
     ScoreManager _scoreManager;
     private float _randomMin = 3;
     private float _randomMax = 5;
-    private bool _delayAndCallNextWaveRunning;
 
-   // private ScoreManager scoreManager;
-
-    // private int _spawnedUsers;
+    private List<UserBase> _users;
     private int _transportedUsers;
     private int _lostedUsers;
+    private float _runnerChance = 0f;
+    private float _timer = 0;
+    private float _waitTime = 2;
+    private bool _runner = false;
+    private bool _delayAndCallNextWaveRunning;
 
     private void Awake()
     {
@@ -47,6 +50,7 @@ public class GameManager : MonoBehaviour
         _scoreManager = GetComponent<ScoreManager>();
         _waveController.OnWaveStarted += HandleWaveStarted;
         _scoreManager.OnUserScored += HandleUserScored;
+        _users = new List<UserBase>();
     }
     private void Start()
     {
@@ -59,11 +63,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    bool runner = false;
-    float runnerChance = 0f;
 
-    float timer = 0;
-    float waitTime = 2;
 
     private void HandleWaveStarted()
     {
@@ -72,73 +72,73 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator SpawnUsersRoutine()
     {
-        while (_waveController.SpawnedUsers < _waveController.CurrentWaveCount)
+        while (_waveController.SpawnedUsers < _waveController.CurrentWaveCount + 4)
         {
-            timer += Time.deltaTime;
+            _timer += Time.deltaTime;
 
-            if (timer >= waitTime)
+            if (_timer >= _waitTime)
             {
-                timer = 0;
-                SpawnUserWithRandomValues(runner);
-                runner = false;
-                waitTime = Random.Range(_randomMin, _randomMax);
+                _timer = 0;
+                SpawnUserWithRandomValues(_runner);
+                _runner = false;
+                _waitTime = Random.Range(_randomMin, _randomMax);
 
                 if (_scoreManager.CurrentScore > 10000)
                 {
                     _randomMin = 0.5f;
                     _randomMax = 2f;
-                    runner = true;
+                    _runner = true;
                 }
                 else if (_scoreManager.CurrentScore > 9000)
                 {
                     _randomMin = 1f;
                     _randomMax = 2.5f;
-                    runnerChance = Random.Range(0, 100);
-                    if (runnerChance < 90)
+                    _runnerChance = Random.Range(0, 100);
+                    if (_runnerChance < 90)
                     {
-                        runner = true;
+                        _runner = true;
                     }
                 }
                 else if (_scoreManager.CurrentScore > 7500)
                 {
                     _randomMin = 1.5f;
                     _randomMax = 2.5f;
-                    runnerChance = Random.Range(0, 100);
-                    if (runnerChance < 70)
+                    _runnerChance = Random.Range(0, 100);
+                    if (_runnerChance < 70)
                     {
-                        print(runner);
-                        runner = true;
+                        print(_runner);
+                        _runner = true;
                     }
-                    print(runner);
+                    print(_runner);
                 }
                 else if (_scoreManager.CurrentScore > 5000)
                 {
                     _randomMin = 1f;
                     _randomMax = 3f;
-                    runnerChance = Random.Range(0, 100);
-                    if (runnerChance < 50)
+                    _runnerChance = Random.Range(0, 100);
+                    if (_runnerChance < 50)
                     {
-                        runner = true;
+                        _runner = true;
                     }
                 }
                 else if (_scoreManager.CurrentScore > 3000)
                 {
                     _randomMin = 1.5f;
                     _randomMax = 3.0f;
-                    runnerChance = Random.Range(0, 100);
-                    if (runnerChance < 35)
+                    _runnerChance = Random.Range(0, 100);
+                    if (_runnerChance < 35)
                     {
-                        runner = true;
+                        _runner = true;
                     }
                 }
                 else if (_scoreManager.CurrentScore > 1000)
                 {
                     _randomMin = 2f;
                     _randomMax = 4f;
-                    runnerChance = Random.Range(0, 100);
-                    if (runnerChance < 25)
+                    _runnerChance = Random.Range(0, 100);
+                    if (_runnerChance < 25)
                     {
-                        runner = true;
+                        _runner = true;
                     }
                 }
             }
@@ -204,9 +204,9 @@ public class GameManager : MonoBehaviour
 
         user.SetSpawnPosition(spawnPosition);
 
-       // _spawnedUsers++;
         _waveController.SpawnedUsers++;
         user.Spawn(spawnedFloor, desiredFloor, _elevator, _charactersMaterials[desiredFloorIndex], this);
+        _users.Add(user);
     }
 
     private void HandleRestartButtonClicked()
@@ -246,7 +246,7 @@ public class GameManager : MonoBehaviour
     private void HandleUserScored()
     {
         _waveController.UpdateUI(_transportedUsers);
-        if (_transportedUsers == _waveController.CurrentWaveCount)
+        if (_transportedUsers >= _waveController.CurrentWaveCount)
         {
             if (!_delayAndCallNextWaveRunning)
             {
@@ -257,10 +257,30 @@ public class GameManager : MonoBehaviour
     private IEnumerator DelayAndCallNextWave()
     {
         _delayAndCallNextWaveRunning = true;
+        DestroyUsers();
         yield return new WaitForSeconds(1f);
+
+        _elevator.ClearElevator();
         _waveController.CallNextWave();
         _transportedUsers = 0;
         _delayAndCallNextWaveRunning = false;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            DestroyUsers();
+        }
+    }
+    private void DestroyUsers()
+    {
+        _elevator.ClearElevator();
+        foreach(var user in _users)
+        {
+            user.Despawn();
+        }
+        _users.Clear();
     }
 
     private void CheckEndLevel()

@@ -4080,6 +4080,12 @@ PrefabInstance:
       propertyPath: _currentFloorPosition
       value: 
       objectReference: {fileID: 1508309935}
+    - target: {fileID: 96111874612640073, guid: f37ecedea84ed584db56af09767488cf,
+        type: 3}
+      propertyPath: _destroyUserEffectPrefab
+      value: 
+      objectReference: {fileID: 8139914664132196975, guid: 129ceb95cafcbeb4986dd9ed3bc26a5b,
+        type: 3}
     - target: {fileID: 1538762428, guid: f37ecedea84ed584db56af09767488cf, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -4121,6 +4127,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.098
+      objectReference: {fileID: 0}
+    - target: {fileID: 748899937685270828, guid: f37ecedea84ed584db56af09767488cf,
+        type: 3}
+      propertyPath: _destroyEffectPrefab
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f37ecedea84ed584db56af09767488cf, type: 3}
@@ -7768,16 +7779,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9105477720452906792, guid: 587e94bf8c29af74e815713b9601a82d,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 137510747}
-    - target: {fileID: 9105477719692372951, guid: 587e94bf8c29af74e815713b9601a82d,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 9105477718621545268, guid: 587e94bf8c29af74e815713b9601a82d,
         type: 3}
       propertyPath: m_ReferenceResolution.x
@@ -7787,6 +7788,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9105477720452906792, guid: 587e94bf8c29af74e815713b9601a82d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 137510747}
+    - target: {fileID: 9105477719692372951, guid: 587e94bf8c29af74e815713b9601a82d,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 587e94bf8c29af74e815713b9601a82d, type: 3}
