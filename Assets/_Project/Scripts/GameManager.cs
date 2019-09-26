@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _endGamePanel;
     [SerializeField] private GameJoltAPI _gameJolt;
     [SerializeField] private WaveController _waveController;
+    [SerializeField] private MultipleTargetCamera _multipleTargetCamera;
 
     ScoreManager _scoreManager;
     private float _randomMin = 3;
@@ -197,7 +198,6 @@ public class GameManager : MonoBehaviour
             user = userRef.GetComponentInChildren<UserBase>();
 
             spawnedFloor.InsertUser(user);
-
         }
         user.OnUserTransported += HandleUserTransported;
         user.OnUserDied += HandleUserLosted;
@@ -207,6 +207,7 @@ public class GameManager : MonoBehaviour
         _waveController.SpawnedUsers++;
         user.Spawn(spawnedFloor, desiredFloor, _elevator, _charactersMaterials[desiredFloorIndex], this);
         _users.Add(user);
+        _multipleTargetCamera.Add(user.transform);
     }
 
     private void HandleRestartButtonClicked()
@@ -266,13 +267,6 @@ public class GameManager : MonoBehaviour
         _delayAndCallNextWaveRunning = false;
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            DestroyUsers();
-        }
-    }
     private void DestroyUsers()
     {
         _elevator.ClearElevator();

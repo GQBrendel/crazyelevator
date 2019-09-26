@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7531260668698767180}
   - component: {fileID: 4303436586175091637}
   m_Layer: 0
-  m_Name: mesinha
+  m_Name: table
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25,7 +25,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2559230733725001577}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.2476141, y: 11.857036, z: 2.2197235}
   m_LocalScale: {x: 0.24807517, y: 0.24807517, z: 0.24807517}
   m_Children: []
@@ -57,7 +57,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 5561349426305759274, guid: 8920b738afbcea74bae9ba3718f5041f, type: 3}
+  - {fileID: 2100000, guid: 0ed7ee5a30365a544b761028c06c0d4e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

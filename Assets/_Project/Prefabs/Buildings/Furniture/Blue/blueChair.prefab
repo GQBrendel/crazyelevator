@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7299183872106057247}
   - component: {fileID: 3924711584432108262}
   m_Layer: 0
-  m_Name: poltronaAzul
+  m_Name: blueChair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25,9 +25,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3335960510792042042}
-  m_LocalRotation: {x: -0, y: 0.9222878, z: -0, w: 0.3865039}
+  m_LocalRotation: {x: 0, y: 0.92228866, z: 0, w: 0.3865018}
   m_LocalPosition: {x: -2.102615, y: 14.79, z: 1.9959934}
-  m_LocalScale: {x: 0.29790992, y: 0.29790947, z: 0.29790992}
+  m_LocalScale: {x: 0.29790944, y: 0.29790947, z: 0.29790944}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -57,7 +57,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 5561349426305759274, guid: 74acd2b394e5c444fb8adae25532ad8c, type: 3}
+  - {fileID: 2100000, guid: fd81a895f90e5324b982a965a65021d0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
