@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class SpawnPosition : MonoBehaviour
 {
-    public bool IsFree { get; set; }
+    [SerializeField] private bool m_isFree;
+    public bool IsFree { get { return m_isFree; } set { m_isFree = value; } }
 
     private void Awake()
     {

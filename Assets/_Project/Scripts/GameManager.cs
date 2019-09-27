@@ -156,6 +156,10 @@ public class GameManager : MonoBehaviour
             desiredfloor = Random.Range(0, 5);
         }
         while (desiredfloor == spawnFloor);
+
+        /*spawnFloor = 1;
+        desiredfloor = 2;*/
+
         SpawnUser(spawnFloor, desiredfloor, runner);
     }
     public void GameOver()

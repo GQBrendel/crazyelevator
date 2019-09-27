@@ -7,8 +7,9 @@ public class ScoreForUI : MonoBehaviour
 {
     [SerializeField] private GameObject _user;
     [SerializeField] private float _timeToReachScore = 2f;
+    private FloorUsersSetup _finalFloor;
 
-    private GameObject _flyDestination;
+    private Transform _flyDestination;
     Rigidbody rb;
     bool flyToHud;
     float timeStamp;
@@ -23,7 +24,7 @@ public class ScoreForUI : MonoBehaviour
     {
         _rootTransform = GetComponentInParent<Transform>();
         _scoreManager = FindObjectOfType<ScoreManager>();
-        _flyDestination = GameObject.FindGameObjectWithTag("ScoreBox");
+        _flyDestination = GameObject.FindGameObjectWithTag("ScoreBox").transform;
         rb = GetComponent<Rigidbody>();
     }
 
@@ -31,30 +32,33 @@ public class ScoreForUI : MonoBehaviour
     {
         if (other.gameObject.tag == "TestUI")
         {
+           // _finalFloor = other.GetComponent<FloorUsersSetup>();
+
+          //  _flyDestination = _finalFloor.GetUserPosition();
+
             timeStamp = Time.time;
 
             _rootTransform.LookAt(_flyDestination.transform);
-            Tween t = _rootTransform.DOMove(_flyDestination.transform.position, 2f).OnComplete(() => 
+            Tween t = _rootTransform.DOMove(_flyDestination.transform.position, .5f).OnComplete(() => 
             {
                 _scoreManager.AddScore(GetComponent<UserBase>());
                 StartCoroutine(SelfDestroy());
                 GetComponent<UserBase>().TurnInvisible();
+
+                GetComponent<UserBase>().Despawn();
+
+                GetComponent<UserBase>().enabled = false;
+              //  _finalFloor.NewUserInTheFloor();
             });
 
             t.SetEase(Ease.Linear);
 
             rb.isKinematic = false;
+
             GetComponent<Animator>().SetBool("Fly", true);
 
-            GetComponent<UserBase>().enabled = false;
             gameObject.layer = 10;
         }
-
-        /*if (other.CompareTag("ScoreBox"))
-        {
-            _scoreManager.AddScore(GetComponent<UserBase>());
-            _user.SetActive(false);
-        }*/
     }
 
     private IEnumerator SelfDestroy()

@@ -43,9 +43,10 @@ public class FloorData : MonoBehaviour
     private void HandleClearFloor()
     {
         _users.Clear();
-        foreach (var waitPos in _waitPositions)
+        for (int i = 0; i < _waitPositions.Length; i++)
         {
-            waitPos.IsFree = true;
+            _waitPositions[i].IsFree = true;
+            _spawnPositions[i].IsFree = true;
         } 
     }
 

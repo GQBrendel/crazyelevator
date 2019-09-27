@@ -226,13 +226,13 @@ public class User : UserBase
 
     private void Update()
     {
-        if (_ragDoll)
+        if (_ragDoll)  //Ragdollstate
         {
             _ragDollObject.SetActive(true);
             gameObject.SetActive(false);
         }
 
-        if (_transformRoot.parent == _elevator.transform)
+        if (_transformRoot.parent == _elevator.transform) //Inside the elevator
         {
             Vector3 Position = new Vector3(0, yOffset, 0);
             _transformRoot.localPosition = Position;
