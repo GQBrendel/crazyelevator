@@ -4,8 +4,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(Camera))]
 public class MultipleTargetCamera : MonoBehaviour
-{
-   
+{   
     [SerializeField] private List<Transform> _targets;
     [SerializeField] private Vector3 _offSet;
     [SerializeField] private float _smoothTime = 0.5f;
@@ -89,9 +88,9 @@ public class MultipleTargetCamera : MonoBehaviour
         return bounds.center;
     }
 
-    public void ToggleUpdateStatus()
+    public void SetUpdateStatus(bool value)
     {
-        _shouldUpdate = !_shouldUpdate;
+        _shouldUpdate = value;
     }
     public void Add(Transform target)
     {

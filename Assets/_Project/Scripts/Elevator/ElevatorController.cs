@@ -16,6 +16,7 @@ public class ElevatorController : MonoBehaviour
     [SerializeField] private int m_currentFloorIndex;
     [SerializeField] private Arrow _arrow;
     [SerializeField] private MultipleTargetCamera _multipleTargetCamera;
+    [SerializeField] private CameraShake _cameraShake;
     [SerializeField] private List<GameObject> _usersInElevator;
 
     private Dictionary<UserBase, GameObject> _userToElevatorDictionary;
@@ -85,7 +86,7 @@ public class ElevatorController : MonoBehaviour
     }
     private void OnMouseDown()
     {
-        _multipleTargetCamera.ToggleUpdateStatus();
+        _multipleTargetCamera.SetUpdateStatus(false);
         _isStoped = false;
         _mouseZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
         _mouseOffset = gameObject.transform.position - GetMouseAsWorldPoint();
@@ -97,7 +98,8 @@ public class ElevatorController : MonoBehaviour
     }
     private void OnMouseUp()
     {
-        _multipleTargetCamera.ToggleUpdateStatus();
+        _cameraShake.ShakeIt();
+//        _multipleTargetCamera.SetUpdateStatus(true);
         AudioManager.instance.Play("Elevator");
         if (!_currentFloorPosition)
         {
@@ -106,7 +108,6 @@ public class ElevatorController : MonoBehaviour
         _isStoped = true;
         Vector3 movePosition = new Vector3(transform.position.x, _currentFloorPosition.position.y, transform.position.z);
         transform.position = movePosition;
-        EZCameraShake.CameraShaker.Instance.StandardShake();
         OnElevatorStoped?.Invoke(m_currentFloorIndex, transform.position);
     }
     private Vector3 GetMouseAsWorldPoint()
