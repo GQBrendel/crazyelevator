@@ -133,10 +133,13 @@ public class ElevatorController : MonoBehaviour
     }
     public void ClearElevator()
     {
-        for (int i = 0; i < CarriedUsers; i++)
+        for (int i = 0; i < _usersInElevator.Count; i++)
         {
-            _usersInElevator[i].SetActive(false);
-            Instantiate(_destroyUserEffectPrefab, _usersInElevator[i].transform.position, _destroyUserEffectPrefab.transform.rotation);
+            if (_usersInElevator[i].activeInHierarchy)
+            {
+                _usersInElevator[i].SetActive(false);
+                Instantiate(_destroyUserEffectPrefab, _usersInElevator[i].transform.position, _destroyUserEffectPrefab.transform.rotation);
+            }
         }
         CarriedUsers = 0;
         _userToElevatorDictionary.Clear();
