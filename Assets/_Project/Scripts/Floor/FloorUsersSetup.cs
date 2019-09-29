@@ -8,12 +8,15 @@ public class FloorUsersSetup : MonoBehaviour
 
     [SerializeField] private List<GameObject> _userInActivity;
     [SerializeField] private Transform _defaultDespawnPos;
+    [SerializeField] private WaveController _waveController;
+    [SerializeField] private GameObject _destroyUserEffectPrefab;
 
     private Dictionary<Transform, bool> _transfomTakeDictionary;
     private Dictionary<GameObject, bool> _userIsActiveDictionaty;
 
     private void Awake()
     {
+        _waveController.OnWaveEnded += HandleWaveEnded;
         _floorData = GetComponent<FloorData>();
         _transfomTakeDictionary = new Dictionary<Transform, bool>();
         _userIsActiveDictionaty = new Dictionary<GameObject, bool>();
@@ -59,5 +62,21 @@ public class FloorUsersSetup : MonoBehaviour
         user.SetActive(true);
     }
 
-
+    private void HandleWaveEnded()
+    {
+        ClearFloor();
+    }
+    private void ClearFloor()
+    {
+        foreach (var user in _userInActivity)
+        {
+            if (_userIsActiveDictionaty[user])
+            {
+                _transfomTakeDictionary[user.transform] = false;
+                _userIsActiveDictionaty[user] = false;
+                Instantiate(_destroyUserEffectPrefab, user.transform.position, _destroyUserEffectPrefab.transform.rotation);
+            }
+            user.SetActive(false);
+        }
+    }
 }

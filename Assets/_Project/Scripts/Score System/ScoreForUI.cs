@@ -32,9 +32,9 @@ public class ScoreForUI : MonoBehaviour
     {
         if (other.gameObject.tag == "TestUI")
         {
-           // _finalFloor = other.GetComponent<FloorUsersSetup>();
+            _finalFloor = other.GetComponent<FloorUsersSetup>();
 
-          //  _flyDestination = _finalFloor.GetUserPosition();
+            _flyDestination = _finalFloor.GetUserPosition();
 
             timeStamp = Time.time;
 
@@ -48,7 +48,7 @@ public class ScoreForUI : MonoBehaviour
                 GetComponent<UserBase>().Despawn();
 
                 GetComponent<UserBase>().enabled = false;
-              //  _finalFloor.NewUserInTheFloor();
+                _finalFloor.NewUserInTheFloor();
             });
 
             t.SetEase(Ease.Linear);
