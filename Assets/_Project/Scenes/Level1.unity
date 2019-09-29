@@ -20,13 +20,13 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.6213065, g: 0.62441254, b: 0.735849, a: 1}
+  m_AmbientSkyColor: {r: 0.40205592, g: 0.40826628, b: 0.6132076, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 2bd8959f5fbd3644aa33af1a155fc147, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: ceb0a3ed2cb53a94fa21843cc958c52b, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -52,7 +52,7 @@ LightmapSettings:
     m_AlbedoBoost: 1
     m_EnvironmentLightingMode: 0
     m_EnableBakedLightmaps: 1
-    m_EnableRealtimeLightmaps: 1
+    m_EnableRealtimeLightmaps: 0
   m_LightmapEditorSettings:
     serializedVersion: 12
     m_Resolution: 2
@@ -1915,6 +1915,7 @@ MonoBehaviour:
   - {fileID: 1029211329}
   - {fileID: 1992022611}
   - {fileID: 709037544}
+  _defaultDespawnPos: {fileID: 0}
 --- !u!1001 &310347990
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3430,6 +3431,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FloorData
       objectReference: {fileID: 0}
+    - target: {fileID: 2279136688748784238, guid: 9fa379a0801eeea41b708a1e721ed77f,
+        type: 3}
+      propertyPath: m_Name
+      value: Floor2
+      objectReference: {fileID: 0}
     - target: {fileID: 2279136689506303572, guid: 9fa379a0801eeea41b708a1e721ed77f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3934,11 +3940,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2279136688748784238, guid: 9fa379a0801eeea41b708a1e721ed77f,
-        type: 3}
-      propertyPath: m_Name
-      value: Floor2
       objectReference: {fileID: 0}
     - target: {fileID: 2279136689800899603, guid: 9fa379a0801eeea41b708a1e721ed77f,
         type: 3}
@@ -13301,6 +13302,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PortaGiratoria
       objectReference: {fileID: 0}
+    - target: {fileID: -6057140222963153312, guid: 5ce569dfb0bf4fe46b624e08af5e0e99,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: cc308ab9c972cdc43ae0391d172d0b44, type: 2}
     - target: {fileID: -4216859302048453862, guid: 5ce569dfb0bf4fe46b624e08af5e0e99,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -13371,11 +13377,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 3.176304
       objectReference: {fileID: 0}
-    - target: {fileID: -6057140222963153312, guid: 5ce569dfb0bf4fe46b624e08af5e0e99,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: cc308ab9c972cdc43ae0391d172d0b44, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ce569dfb0bf4fe46b624e08af5e0e99, type: 3}
 --- !u!1 &1834554184
