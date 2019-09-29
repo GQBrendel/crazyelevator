@@ -10565,9 +10565,6 @@ MonoBehaviour:
   - {fileID: 8987915340615422812}
   - {fileID: 8987915341020642457}
   _defaultDespawnPos: {fileID: 8987915339755622175}
-  _waveController: {fileID: 0}
-  _destroyUserEffectPrefab: {fileID: 8139914664132196975, guid: 129ceb95cafcbeb4986dd9ed3bc26a5b,
-    type: 3}
 --- !u!1 &8987915339419355222
 GameObject:
   m_ObjectHideFlags: 0
@@ -19972,6 +19969,7 @@ GameObject:
   - component: {fileID: 8987915339933479174}
   - component: {fileID: 8987915339933479169}
   - component: {fileID: 8987915339933479168}
+  - component: {fileID: 1831200823}
   m_Layer: 0
   m_Name: BlueUsersInTheFloor
   m_TagString: Untagged
@@ -19986,15 +19984,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8987915339933479170}
-  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 2.4032717, y: -2.105482, z: 3.4812465}
+  m_LocalRotation: {x: -0, y: -0.9155545, z: -0, w: 0.40219393}
+  m_LocalPosition: {x: 2.854, y: -2.105482, z: 2.902}
   m_LocalScale: {x: 0.20853697, y: 0.20853662, z: 0.20853695}
   m_Children:
   - {fileID: 8987915340518753745}
   - {fileID: 8987915341185687908}
   m_Father: {fileID: 8987915340441082792}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -132.569, z: 0}
 --- !u!54 &8987915339933479174
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -20044,6 +20042,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1831200823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8987915339933479170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20bc56e814eb8624b9f06ae8436e8fa5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animationClip: {fileID: 7400000, guid: feaccfdb7638b6845a9d935a2d81c32b, type: 2}
 --- !u!1 &8987915339934002358
 GameObject:
   m_ObjectHideFlags: 0
@@ -20742,9 +20753,6 @@ MonoBehaviour:
   - {fileID: 8987915340108622958}
   - {fileID: 8987915340630760201}
   _defaultDespawnPos: {fileID: 8987915340682935314}
-  _waveController: {fileID: 0}
-  _destroyUserEffectPrefab: {fileID: 8139914664132196975, guid: 129ceb95cafcbeb4986dd9ed3bc26a5b,
-    type: 3}
 --- !u!1 &8987915339964886355
 GameObject:
   m_ObjectHideFlags: 0
@@ -22063,9 +22071,6 @@ MonoBehaviour:
   - {fileID: 8987915339846097588}
   - {fileID: 8987915339236901734}
   _defaultDespawnPos: {fileID: 8987915340399449433}
-  _waveController: {fileID: 0}
-  _destroyUserEffectPrefab: {fileID: 8139914664132196975, guid: 129ceb95cafcbeb4986dd9ed3bc26a5b,
-    type: 3}
 --- !u!1 &8987915340041850152
 GameObject:
   m_ObjectHideFlags: 0
@@ -29960,9 +29965,6 @@ MonoBehaviour:
   - {fileID: 8987915340907824656}
   - {fileID: 8987915339485921519}
   _defaultDespawnPos: {fileID: 8987915339755622175}
-  _waveController: {fileID: 0}
-  _destroyUserEffectPrefab: {fileID: 8139914664132196975, guid: 129ceb95cafcbeb4986dd9ed3bc26a5b,
-    type: 3}
 --- !u!1 &8987915340506386179
 GameObject:
   m_ObjectHideFlags: 0
@@ -37419,9 +37421,6 @@ MonoBehaviour:
   - {fileID: 8987915339689163313}
   - {fileID: 8987915341099969930}
   _defaultDespawnPos: {fileID: 8987915339755622175}
-  _waveController: {fileID: 0}
-  _destroyUserEffectPrefab: {fileID: 8139914664132196975, guid: 129ceb95cafcbeb4986dd9ed3bc26a5b,
-    type: 3}
 --- !u!1 &8987915340943757011
 GameObject:
   m_ObjectHideFlags: 0
