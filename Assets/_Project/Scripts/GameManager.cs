@@ -263,9 +263,10 @@ public class GameManager : MonoBehaviour
     {
         _delayAndCallNextWaveRunning = true;
         DestroyUsers();
+        _waveController.WaveEnded();
         yield return new WaitForSeconds(1f);
 
-        _elevator.ClearElevator();
+        //_elevator.ClearElevator();
         _waveController.CallNextWave();
         _transportedUsers = 0;
         _delayAndCallNextWaveRunning = false;
@@ -273,7 +274,7 @@ public class GameManager : MonoBehaviour
 
     private void DestroyUsers()
     {
-        _elevator.ClearElevator();
+       // _elevator.ClearElevator();
         foreach(var user in _users)
         {
             user.Despawn();

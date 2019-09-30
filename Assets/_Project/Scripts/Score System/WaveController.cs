@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class WaveController : MonoBehaviour
 {
-    public delegate void WaveStartHandler();
-    public WaveStartHandler OnWaveStarted;
+    public delegate void WaveHandler();
+    public WaveHandler OnWaveStarted;
+    public WaveHandler OnWaveEnded;
 
     [SerializeField] private int[] _waveCount;
     [SerializeField] private WavePanel _wavePanel;
@@ -35,6 +36,11 @@ public class WaveController : MonoBehaviour
     private void HandleAnimationEnded()
     {
         OnWaveStarted?.Invoke();
+    }
+
+    public void WaveEnded()
+    {
+        OnWaveEnded?.Invoke();
     }
 
     public void CallNextWave()

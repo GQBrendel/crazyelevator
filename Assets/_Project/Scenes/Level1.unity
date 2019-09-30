@@ -2146,6 +2146,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8987915339962417570, guid: 9fa379a0801eeea41b708a1e721ed77f,
+        type: 3}
+      propertyPath: _waveController
+      value: 
+      objectReference: {fileID: 1350483008}
+    - target: {fileID: 8987915340041210071, guid: 9fa379a0801eeea41b708a1e721ed77f,
+        type: 3}
+      propertyPath: _waveController
+      value: 
+      objectReference: {fileID: 1350483008}
+    - target: {fileID: 8987915340943694271, guid: 9fa379a0801eeea41b708a1e721ed77f,
+        type: 3}
+      propertyPath: _waveController
+      value: 
+      objectReference: {fileID: 1350483008}
+    - target: {fileID: 8987915340506089173, guid: 9fa379a0801eeea41b708a1e721ed77f,
+        type: 3}
+      propertyPath: _waveController
+      value: 
+      objectReference: {fileID: 1350483008}
+    - target: {fileID: 8987915339416757647, guid: 9fa379a0801eeea41b708a1e721ed77f,
+        type: 3}
+      propertyPath: _waveController
+      value: 
+      objectReference: {fileID: 1350483008}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9fa379a0801eeea41b708a1e721ed77f, type: 3}
 --- !u!1001 &526491452
@@ -4912,6 +4937,11 @@ PrefabInstance:
       propertyPath: _cameraShake
       value: 
       objectReference: {fileID: 1343646578}
+    - target: {fileID: 96111874612640073, guid: f37ecedea84ed584db56af09767488cf,
+        type: 3}
+      propertyPath: _waveController
+      value: 
+      objectReference: {fileID: 1350483008}
     - target: {fileID: 1538762428, guid: f37ecedea84ed584db56af09767488cf, type: 3}
       propertyPath: m_Mesh
       value: 

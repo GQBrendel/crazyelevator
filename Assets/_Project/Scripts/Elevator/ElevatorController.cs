@@ -18,6 +18,7 @@ public class ElevatorController : MonoBehaviour
     [SerializeField] private MultipleTargetCamera _multipleTargetCamera;
     [SerializeField] private CameraShake _cameraShake;
     [SerializeField] private List<GameObject> _usersInElevator;
+    [SerializeField] private WaveController _waveController;
 
     private Dictionary<UserBase, GameObject> _userToElevatorDictionary;
     private float _maxY = 31.8541f;
@@ -35,6 +36,7 @@ public class ElevatorController : MonoBehaviour
 
     private void Start()
     {
+        _waveController.OnWaveEnded += HandleWaveEnded;
         _userToElevatorDictionary = new Dictionary<UserBase, GameObject>();
         foreach (var user in _usersInElevator)
         {
@@ -131,7 +133,12 @@ public class ElevatorController : MonoBehaviour
         Vector3 movePosition = new Vector3(transform.position.x, yPos, transform.position.z);
         transform.position = movePosition;
     }
-    public void ClearElevator()
+
+    private void HandleWaveEnded()
+    {
+        ClearElevator();
+    }
+    private void ClearElevator()
     {
         for (int i = 0; i < _usersInElevator.Count; i++)
         {
