@@ -432,7 +432,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 9
   m_Type: 0
-  m_Color: {r: 0.4039216, g: 0.13333334, b: 0.5568628, a: 1}
+  m_Color: {r: 0.120666504, g: 1, b: 0, a: 1}
   m_Intensity: 14.2
   m_Range: 16.3426
   m_SpotAngle: 35.980206
@@ -2146,11 +2146,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8987915339416757647, guid: 9fa379a0801eeea41b708a1e721ed77f,
-        type: 3}
-      propertyPath: _waveController
-      value: 
-      objectReference: {fileID: 1350483008}
     - target: {fileID: 8987915339962417570, guid: 9fa379a0801eeea41b708a1e721ed77f,
         type: 3}
       propertyPath: _waveController
@@ -2161,12 +2156,17 @@ PrefabInstance:
       propertyPath: _waveController
       value: 
       objectReference: {fileID: 1350483008}
+    - target: {fileID: 8987915340943694271, guid: 9fa379a0801eeea41b708a1e721ed77f,
+        type: 3}
+      propertyPath: _waveController
+      value: 
+      objectReference: {fileID: 1350483008}
     - target: {fileID: 8987915340506089173, guid: 9fa379a0801eeea41b708a1e721ed77f,
         type: 3}
       propertyPath: _waveController
       value: 
       objectReference: {fileID: 1350483008}
-    - target: {fileID: 8987915340943694271, guid: 9fa379a0801eeea41b708a1e721ed77f,
+    - target: {fileID: 8987915339416757647, guid: 9fa379a0801eeea41b708a1e721ed77f,
         type: 3}
       propertyPath: _waveController
       value: 
@@ -5008,19 +5008,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 531098548, guid: f37ecedea84ed584db56af09767488cf, type: 3}
       propertyPath: m_Size.x
-      value: 1.6570238
+      value: 1.6570239
       objectReference: {fileID: 0}
     - target: {fileID: 531098548, guid: f37ecedea84ed584db56af09767488cf, type: 3}
       propertyPath: m_Center.x
       value: 0.3285125
-      objectReference: {fileID: 0}
-    - target: {fileID: 531098548, guid: f37ecedea84ed584db56af09767488cf, type: 3}
-      propertyPath: m_Size.y
-      value: 0.88092476
-      objectReference: {fileID: 0}
-    - target: {fileID: 531098548, guid: f37ecedea84ed584db56af09767488cf, type: 3}
-      propertyPath: m_Center.y
-      value: -0.059537653
       objectReference: {fileID: 0}
     - target: {fileID: 7868291806652464231, guid: f37ecedea84ed584db56af09767488cf,
         type: 3}
@@ -5077,18 +5069,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 531098547, guid: f37ecedea84ed584db56af09767488cf, type: 3}
-      propertyPath: lights.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 531098547, guid: f37ecedea84ed584db56af09767488cf, type: 3}
-      propertyPath: lights.Array.data[0]
-      value: 
-      objectReference: {fileID: 99770774}
-    - target: {fileID: 531098547, guid: f37ecedea84ed584db56af09767488cf, type: 3}
-      propertyPath: lights.Array.data[1]
-      value: 
-      objectReference: {fileID: 1674873891}
     - target: {fileID: 1538762425, guid: f37ecedea84ed584db56af09767488cf, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 5
@@ -5098,11 +5078,6 @@ PrefabInstance:
       propertyPath: m_CastShadows
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4516832409509492257, guid: f37ecedea84ed584db56af09767488cf,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 2a882f15d2a38d04e9ccc21d1093689b, type: 2}
     - target: {fileID: 1538762429, guid: f37ecedea84ed584db56af09767488cf, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
