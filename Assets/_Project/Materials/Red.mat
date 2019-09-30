@@ -91,7 +91,7 @@ Material:
     - _EmissionPower: 1
     - _EnableExternalAlpha: 0
     - _GlossMapScale: 1
-    - _Glossiness: 0.5
+    - _Glossiness: 0
     - _GlossyReflections: 1
     - _Hue: 0
     - _LightSmoothness: 0.607
