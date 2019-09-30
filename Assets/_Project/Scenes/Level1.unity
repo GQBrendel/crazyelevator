@@ -2146,6 +2146,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8987915339619720534, guid: 9fa379a0801eeea41b708a1e721ed77f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.56
+      objectReference: {fileID: 0}
     - target: {fileID: 8987915339416757647, guid: 9fa379a0801eeea41b708a1e721ed77f,
         type: 3}
       propertyPath: _waveController
