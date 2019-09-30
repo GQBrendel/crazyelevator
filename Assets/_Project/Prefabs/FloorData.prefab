@@ -11843,15 +11843,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8987915339485921519}
-  m_LocalRotation: {x: -0, y: 0.87677014, z: -0, w: 0.4809097}
-  m_LocalPosition: {x: -2.085, y: -2.105482, z: 2.939}
+  m_LocalRotation: {x: -0, y: 0.69449365, z: -0, w: 0.7194988}
+  m_LocalPosition: {x: -2.167, y: -2.105482, z: 2.992}
   m_LocalScale: {x: 0.20853697, y: 0.20853662, z: 0.20853695}
   m_Children:
   - {fileID: 8987915339309626627}
   - {fileID: 8987915340113810803}
   m_Father: {fileID: 8987915341146299809}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 122.51, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 87.97401, z: 0}
 --- !u!95 &8987915339485921517
 Animator:
   serializedVersion: 3
@@ -11883,7 +11883,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20bc56e814eb8624b9f06ae8436e8fa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animationClip: {fileID: 7400000, guid: feaccfdb7638b6845a9d935a2d81c32b, type: 2}
+  _animationClip: {fileID: 0}
 --- !u!1 &8987915339486531112
 GameObject:
   m_ObjectHideFlags: 0
@@ -22962,15 +22962,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8987915340101301875}
-  m_LocalRotation: {x: -0, y: 0.97030526, z: -0, w: 0.2418839}
-  m_LocalPosition: {x: 0.156, y: -2.301, z: 2.571}
+  m_LocalRotation: {x: -0, y: 0.69449365, z: -0, w: 0.7194988}
+  m_LocalPosition: {x: 1.372472, y: -2.105482, z: 3.262}
   m_LocalScale: {x: 0.20853697, y: 0.20853662, z: 0.20853695}
   m_Children:
   - {fileID: 8987915339525373941}
   - {fileID: 8987915339451780226}
   m_Father: {fileID: 8987915341146299809}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 152.00401, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 87.97401, z: 0}
 --- !u!95 &8987915340101301873
 Animator:
   serializedVersion: 3
@@ -23002,7 +23002,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20bc56e814eb8624b9f06ae8436e8fa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animationClip: {fileID: 7400000, guid: 4ff174028d8e63b4596c5ab81f222eb4, type: 2}
+  _animationClip: {fileID: 0}
 --- !u!1 &8987915340101466304
 GameObject:
   m_ObjectHideFlags: 0
@@ -29760,7 +29760,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8987915340506089172
 Transform:
   m_ObjectHideFlags: 0
@@ -36545,15 +36545,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8987915340907824656}
-  m_LocalRotation: {x: 0.049023964, y: 0.6531239, z: 0.03340817, w: -0.75492364}
-  m_LocalPosition: {x: -0.463, y: -2.194, z: -0.18}
+  m_LocalRotation: {x: -0, y: 0.69449365, z: -0, w: 0.7194988}
+  m_LocalPosition: {x: 1.372472, y: -2.105482, z: 2.533}
   m_LocalScale: {x: 0.20853697, y: 0.20853662, z: 0.20853695}
   m_Children:
   - {fileID: 8987915339550838351}
   - {fileID: 8987915340454317690}
   m_Father: {fileID: 8987915341146299809}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: -6.7570004, y: 278.224, z: 0.78400004}
+  m_LocalEulerAnglesHint: {x: 0, y: 87.97401, z: 0}
 --- !u!95 &8987915340907824662
 Animator:
   serializedVersion: 3
@@ -36585,7 +36585,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20bc56e814eb8624b9f06ae8436e8fa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animationClip: {fileID: 7400000, guid: 12a93f278d0246b489d8ea146c44a246, type: 2}
+  _animationClip: {fileID: 0}
 --- !u!1 &8987915340910622121
 GameObject:
   m_ObjectHideFlags: 0
@@ -38007,15 +38007,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8987915340991229508}
-  m_LocalRotation: {x: -0, y: 0.87270314, z: -0, w: 0.4882512}
-  m_LocalPosition: {x: -1.623, y: -2.105482, z: 3.54}
+  m_LocalRotation: {x: -0, y: 0.69449365, z: -0, w: 0.7194988}
+  m_LocalPosition: {x: 1.372472, y: -2.105482, z: 4.08}
   m_LocalScale: {x: 0.20853697, y: 0.20853662, z: 0.20853695}
   m_Children:
   - {fileID: 8987915339699929578}
   - {fileID: 8987915340635702711}
   m_Father: {fileID: 8987915341146299809}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 121.549, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 87.97401, z: 0}
 --- !u!95 &8987915340991229514
 Animator:
   serializedVersion: 3
@@ -38047,7 +38047,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20bc56e814eb8624b9f06ae8436e8fa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animationClip: {fileID: 7400000, guid: feaccfdb7638b6845a9d935a2d81c32b, type: 2}
+  _animationClip: {fileID: 0}
 --- !u!1 &8987915340993049152
 GameObject:
   m_ObjectHideFlags: 0
