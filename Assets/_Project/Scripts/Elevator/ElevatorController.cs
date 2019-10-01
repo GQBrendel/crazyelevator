@@ -50,6 +50,8 @@ public class ElevatorController : MonoBehaviour
         {
             user.SetActive(false);
         }
+        DisableParticles(_particlesTop);
+        DisableParticles(_particlesBotton);
     }
 
     public void UserEnteredElevator(UserBase user)
