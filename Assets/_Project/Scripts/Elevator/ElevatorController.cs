@@ -11,6 +11,9 @@ public class ElevatorController : MonoBehaviour
     public FloorChangeHandler OnFloorChanged;
     public ElevatorStopedHandler OnElevatorStoped;
 
+    public int CarriedUsers;
+    public int MaxCapacity = 4;
+
     [SerializeField] private GameObject _destroyUserEffectPrefab;
     [SerializeField] private Transform _currentFloorPosition;
     [SerializeField] private int m_currentFloorIndex;
@@ -19,17 +22,22 @@ public class ElevatorController : MonoBehaviour
     [SerializeField] private CameraShake _cameraShake;
     [SerializeField] private List<GameObject> _usersInElevator;
     [SerializeField] private WaveController _waveController;
+  
+    [Header("Particles")]
+    [SerializeField] private ParticleSystem[] _particlesBotton;
+    [SerializeField] private GameObject[] _particleBaseLightBotton;
+    [SerializeField] private ParticleSystem[] _particlesTop;
+    [SerializeField] private GameObject[] _particleBaseLightTop;
 
     private Dictionary<UserBase, GameObject> _userToElevatorDictionary;
-    private float _maxY = 31.8541f;
-    private float _minY = 3.100102f;
+    private float _maxY = 33.15289f;
+    private float _minY = 3.767541f;
 
     private Vector3 _mouseOffset;
     private float _mouseZCoord;
     private bool _isStoped = true;
 
-    public int CarriedUsers;
-    public int MaxCapacity = 4;
+
 
     public int CurrentFlootIndex { get { return m_currentFloorIndex; } }
     public bool HasRoom { get { return CarriedUsers < MaxCapacity; } }
@@ -101,7 +109,11 @@ public class ElevatorController : MonoBehaviour
     private void OnMouseUp()
     {
         _cameraShake.ShakeIt();
-//        _multipleTargetCamera.SetUpdateStatus(true);
+
+        DisableParticles(_particlesBotton);
+        DisableParticles(_particlesTop);
+
+        //        _multipleTargetCamera.SetUpdateStatus(true);
         AudioManager.instance.Play("Elevator");
         if (!_currentFloorPosition)
         {
@@ -118,20 +130,89 @@ public class ElevatorController : MonoBehaviour
         mousePoint.z = _mouseZCoord;
         return Camera.main.ScreenToWorldPoint(mousePoint);
     }
+
+    public float previousY;
+    float yPos;
+
     void OnMouseDrag()
     {
-        float yPos = (GetMouseAsWorldPoint() + _mouseOffset).y;
+        previousY = yPos;
+        yPos = (GetMouseAsWorldPoint() + _mouseOffset).y;
+        
+        if(previousY > yPos)
+        {
+            DisableParticles(_particlesBotton);
+            EnableParticles(_particlesTop);
+        }
+        if(previousY < yPos && yPos != _maxY)
+        {
+            EnableParticles(_particlesBotton);
+            DisableParticles(_particlesTop);
+        }
+        if(previousY == yPos)
+        {
+            DisableParticles(_particlesBotton);
+            DisableParticles(_particlesTop);
+        }
 
-        if(yPos > _maxY)
+        if (yPos > _maxY)
         {
             yPos = _maxY;
+            DisableParticles(_particlesBotton);
         }
         if(yPos < _minY)
         {
             yPos = _minY;
+            DisableParticles(_particlesTop);
         }
+
+        previousY = yPos;
         Vector3 movePosition = new Vector3(transform.position.x, yPos, transform.position.z);
         transform.position = movePosition;
+    }
+
+    private void DisableParticles(ParticleSystem[] particles)
+    {
+        foreach(var particle in particles)
+        {
+            particle.Stop();
+        }
+        if(particles == _particlesTop)
+        {
+            foreach(var light in _particleBaseLightTop)
+            {
+                light.SetActive(false);
+            }
+        }
+        else if(particles == _particlesBotton)
+        {
+            foreach (var light in _particleBaseLightBotton)
+            {
+                light.SetActive(false);
+            }
+        }
+
+    }
+    private void EnableParticles(ParticleSystem[] particles)
+    {
+        foreach (var particle in particles)
+        {
+            particle.Play();
+        }
+        if (particles == _particlesTop)
+        {
+            foreach (var light in _particleBaseLightTop)
+            {
+                light.SetActive(true);
+            }
+        }
+        else if (particles == _particlesBotton)
+        {
+            foreach (var light in _particleBaseLightBotton)
+            {
+                light.SetActive(true);
+            }
+        }
     }
 
     private void HandleWaveEnded()
