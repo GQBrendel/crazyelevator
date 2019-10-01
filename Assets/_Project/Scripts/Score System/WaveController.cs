@@ -41,6 +41,7 @@ public class WaveController : MonoBehaviour
     public void WaveEnded()
     {
         OnWaveEnded?.Invoke();
+        AudioManager.instance.Play("FinishWave");
     }
 
     public void CallNextWave()

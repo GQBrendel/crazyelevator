@@ -50,8 +50,7 @@ public class ElevatorController : MonoBehaviour
         {
             user.SetActive(false);
         }
-        DisableParticles(_particlesTop);
-        DisableParticles(_particlesBotton);
+        DisableEffects();
     }
 
     public void UserEnteredElevator(UserBase user)
@@ -76,6 +75,7 @@ public class ElevatorController : MonoBehaviour
         leavingUser.gameObject.SetActive(false);
         user.gameObject.SetActive(true);
         _multipleTargetCamera.Remove(user.transform);
+        AudioManager.instance.Play("Woohoo");
     }          
 
     public bool IsStopedOnTheFloor(int floorIndex)
@@ -112,8 +112,7 @@ public class ElevatorController : MonoBehaviour
     {
         _cameraShake.ShakeIt();
 
-        DisableParticles(_particlesBotton);
-        DisableParticles(_particlesTop);
+        DisableEffects();
 
         //        _multipleTargetCamera.SetUpdateStatus(true);
         AudioManager.instance.Play("Elevator");
@@ -153,8 +152,7 @@ public class ElevatorController : MonoBehaviour
         }
         if(previousY == yPos)
         {
-            DisableParticles(_particlesBotton);
-            DisableParticles(_particlesTop);
+            DisableEffects();
         }
 
         if (yPos > _maxY)
@@ -173,6 +171,11 @@ public class ElevatorController : MonoBehaviour
         transform.position = movePosition;
     }
 
+    private void DisableEffects()
+    {
+        DisableParticles(_particlesTop);
+        DisableParticles(_particlesBotton);
+    }
     private void DisableParticles(ParticleSystem[] particles)
     {
         foreach(var particle in particles)
