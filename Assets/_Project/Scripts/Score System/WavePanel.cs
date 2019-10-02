@@ -44,6 +44,7 @@ public class WavePanel : MonoBehaviour
         {
             _bubbleEffectTransform.anchoredPosition = new Vector3(_bubbleXPos, 0, 0);
             _bubbleEffect.Play();
+            AudioManager.instance.PlayBubbleSound(Random.Range(3,4));
         }
 
         _uiSlider.UpdateSliderValue(sliderValue);

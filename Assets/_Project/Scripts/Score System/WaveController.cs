@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -42,6 +41,7 @@ public class WaveController : MonoBehaviour
     {
         OnWaveEnded?.Invoke();
         AudioManager.instance.Play("FinishWave");
+        AudioManager.instance.PlayBubbleSound(Random.Range(13, 15));
     }
 
     public void CallNextWave()

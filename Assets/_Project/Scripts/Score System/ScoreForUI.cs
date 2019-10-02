@@ -48,6 +48,7 @@ public class ScoreForUI : MonoBehaviour
                 GetComponent<UserBase>().Despawn();
 
                 GetComponent<UserBase>().enabled = false;
+                AudioManager.instance.PlayBubbleSound(Random.Range(6,8));
                 _finalFloor.NewUserInTheFloor();
             });
 

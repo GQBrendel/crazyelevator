@@ -1,5 +1,54 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &991555328
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 991555329}
+  - component: {fileID: 991555330}
+  m_Layer: 0
+  m_Name: BubblePopSound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &991555329
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 991555328}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 59.8, y: -35.174454, z: 12.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2437292052219462178}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &991555330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 991555328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41a929d059ed3284a9799a468a2ab36c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bubblePopSoundPrefab: {fileID: 3321017205466453935, guid: 731507034500eb344a813501ca3f1976,
+    type: 3}
+  _numberOfInstances: 15
+  _volumeVariance: 0.5
+  _pitchVariance: 0.2
+  _audios: []
 --- !u!1 &2437292052219462176
 GameObject:
   m_ObjectHideFlags: 0
@@ -27,7 +76,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -59.8, y: 35.174454, z: -12.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 991555329}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -43,6 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9afb8357362640f47a891b5290ae529d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _bubbleSound: {fileID: 991555330}
   mixerGroup: {fileID: 0}
   sounds:
   - name: MainSound
@@ -97,5 +148,14 @@ MonoBehaviour:
     pitch: 1
     pitchVariance: 0
     loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: BubblePop
+    clip: {fileID: 8300000, guid: 287a3b043efed7446aa2edcf85a0c810, type: 3}
+    volume: 1
+    volumeVariance: 0.593
+    pitch: 1
+    pitchVariance: 1
+    loop: 1
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
