@@ -134,6 +134,62 @@ public class ElevatorController : MonoBehaviour
         transform.position = movePosition;
     }
 
+<<<<<<< Updated upstream
+=======
+    private void DisableEffects()
+    {
+        DisableParticles(_particlesTop);
+        DisableParticles(_particlesBotton);
+    }
+    private void DisableParticles(ParticleSystem[] particles)
+    {
+        foreach(var particle in particles)
+        {
+            particle.Stop();
+        }
+        //Função desnecesaria pois as particulas já fazem isso
+        /*
+        if(particles == _particlesTop)
+        {
+            foreach(var light in _particleBaseLightTop)
+            {
+                light.SetActive(false);
+            }
+        }
+        else if(particles == _particlesBotton)
+        {
+            foreach (var light in _particleBaseLightBotton)
+            {
+                light.SetActive(false);
+            }
+        }
+        */
+    }
+    private void EnableParticles(ParticleSystem[] particles)
+    {
+        foreach (var particle in particles)
+        {
+            particle.Play();
+        }
+        //Função desnecesaria pois as particulas já fazem isso
+        /*
+        if (particles == _particlesTop)
+        {
+            foreach (var light in _particleBaseLightTop)
+            {
+                light.SetActive(true);
+            }
+        }
+        else if (particles == _particlesBotton)
+        {
+            foreach (var light in _particleBaseLightBotton)
+            {
+                light.SetActive(true);
+            }
+        }*/
+    }
+
+>>>>>>> Stashed changes
     private void HandleWaveEnded()
     {
         ClearElevator();

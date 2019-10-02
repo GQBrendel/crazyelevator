@@ -5123,6 +5123,56 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -5631793406657297525, guid: 2692fbb5d2f9fb44d97600ec7936c8d0,
         type: 2}
+    - target: {fileID: 6206770419743617477, guid: f37ecedea84ed584db56af09767488cf,
+        type: 3}
+      propertyPath: LightsModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 673979654, guid: f37ecedea84ed584db56af09767488cf, type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 991883241, guid: f37ecedea84ed584db56af09767488cf, type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 795153123, guid: f37ecedea84ed584db56af09767488cf, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1850600207, guid: f37ecedea84ed584db56af09767488cf, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1674873890, guid: f37ecedea84ed584db56af09767488cf, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 99770773, guid: f37ecedea84ed584db56af09767488cf, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 785859290, guid: f37ecedea84ed584db56af09767488cf, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029648275, guid: f37ecedea84ed584db56af09767488cf, type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6206770420032310719, guid: f37ecedea84ed584db56af09767488cf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 317194368, guid: f37ecedea84ed584db56af09767488cf, type: 3}
+      propertyPath: LightsModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 124242708, guid: f37ecedea84ed584db56af09767488cf, type: 3}
+      propertyPath: LightsModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f37ecedea84ed584db56af09767488cf, type: 3}
 --- !u!4 &1189637383 stripped
