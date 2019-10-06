@@ -64,7 +64,7 @@ MonoBehaviour:
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
   - name: Elevator
-    clip: {fileID: 8300000, guid: ce4222fe7e29543409753155bb9dec38, type: 3}
+    clip: {fileID: 8300000, guid: 67c68d470f5d55f4eb3cc9d2c5a4406d, type: 3}
     volume: 0.715
     volumeVariance: 0.593
     pitch: 1
@@ -78,6 +78,24 @@ MonoBehaviour:
     volumeVariance: 0.593
     pitch: 1
     pitchVariance: 0.537
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Woohoo
+    clip: {fileID: 8300000, guid: 5524fdb6ef789b34bbedc9d259b04522, type: 3}
+    volume: 0.715
+    volumeVariance: 0.593
+    pitch: 1
+    pitchVariance: 0.537
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: FinishWave
+    clip: {fileID: 8300000, guid: 3d9f91adc6c0bd744b71a2e299e9ec23, type: 3}
+    volume: 0.715
+    volumeVariance: 0.593
+    pitch: 1
+    pitchVariance: 0
     loop: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}

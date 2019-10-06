@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using TMPro;
 
 [RequireComponent(typeof(ScoreManager))]
 public class GameManager : MonoBehaviour
@@ -43,6 +44,8 @@ public class GameManager : MonoBehaviour
     private bool _runner = false;
     private bool _delayAndCallNextWaveRunning;
 
+
+    [SerializeField] private TextMeshProUGUI life;
     private void Awake()
     {
         _elevator.OnFloorChanged += HandleElevatorFloorChanged;
@@ -244,9 +247,6 @@ public class GameManager : MonoBehaviour
         _lostedUsers++;
         CheckEndLevel();
     }
-    [SerializeField] private Image _deathImage1;
-    [SerializeField] private Image _deathImage2;
-    [SerializeField] private Image _deathImage3;
 
     private void HandleUserScored()
     {
@@ -286,16 +286,16 @@ public class GameManager : MonoBehaviour
     {
         if (_lostedUsers == 1)
         {
-            _deathImage1.color = new Color(_deathImage1.color.r, _deathImage1.color.g, _deathImage1.color.b, 255);
+            life.text = "2";
         }
         else if (_lostedUsers == 2)
         {
-            _deathImage2.color = new Color(_deathImage2.color.r, _deathImage2.color.g, _deathImage2.color.b, 255);
+            life.text = "1";
         }
 
         else if (_lostedUsers >= 3)
         {
-            _deathImage3.color = new Color(_deathImage3.color.r, _deathImage3.color.g, _deathImage3.color.b, 255);
+            life.text = "0";
             GameOver();
         }
     }
