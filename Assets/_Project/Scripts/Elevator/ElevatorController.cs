@@ -182,9 +182,7 @@ public class ElevatorController : MonoBehaviour
         {
             particle.Stop();
         }
-        //Função feita direto na particula
-        /*
-        if (particles == _particlesTop)
+        if(particles == _particlesTop)
         {
             foreach(var light in _particleBaseLightTop)
             {
@@ -197,7 +195,7 @@ public class ElevatorController : MonoBehaviour
             {
                 light.SetActive(false);
             }
-        }*/
+        }
 
     }
     private void EnableParticles(ParticleSystem[] particles)
@@ -206,8 +204,6 @@ public class ElevatorController : MonoBehaviour
         {
             particle.Play();
         }
-        //Função feita direto na particula
-        /*
         if (particles == _particlesTop)
         {
             foreach (var light in _particleBaseLightTop)
@@ -221,7 +217,7 @@ public class ElevatorController : MonoBehaviour
             {
                 light.SetActive(true);
             }
-        }*/
+        }
     }
 
     private void HandleWaveEnded()

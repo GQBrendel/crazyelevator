@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
+    [SerializeField] BubblePopSound _bubbleSound;
     private bool _muted;
 	public static AudioManager instance;
 
@@ -36,6 +37,11 @@ public class AudioManager : MonoBehaviour
     {
         _muted = !_muted;
         AudioListener.pause = _muted;
+    }
+
+    public void PlayBubbleSound(int repeats)
+    {
+        _bubbleSound.PlayBubbleSound(repeats);
     }
 
 	public void Play(string sound, bool checkIfIsAlreadyPlaying = false)
