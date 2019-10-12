@@ -44,7 +44,6 @@ public class GameManager : MonoBehaviour
     private bool _runner = false;
     private bool _delayAndCallNextWaveRunning;
 
-
     [SerializeField] private TextMeshProUGUI life;
     private void Awake()
     {
