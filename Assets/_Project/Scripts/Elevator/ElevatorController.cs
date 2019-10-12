@@ -22,6 +22,8 @@ public class ElevatorController : MonoBehaviour
     [SerializeField] private CameraShake _cameraShake;
     [SerializeField] private List<GameObject> _usersInElevator;
     [SerializeField] private WaveController _waveController;
+    
+    [SerializeField] private Light[] lights;
   
     [Header("Particles")]
     [SerializeField] private ParticleSystem[] _particlesBotton;
@@ -102,8 +104,11 @@ public class ElevatorController : MonoBehaviour
         _isStoped = false;
         _mouseZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
         _mouseOffset = gameObject.transform.position - GetMouseAsWorldPoint();
+        lights[0].enabled = false;
+        lights[1].enabled = false;
 
-        if (_arrow.gameObject.activeInHierarchy)
+
+        if (_arrow.isActiveAndEnabled)
         {
             _arrow.gameObject.SetActive(false);
         }
@@ -120,7 +125,10 @@ public class ElevatorController : MonoBehaviour
         {
             return;
         }
-        _isStoped = true;
+        lights[0].enabled = true;
+         lights[1].enabled = true;
+
+         _isStoped = true;
         Vector3 movePosition = new Vector3(transform.position.x, _currentFloorPosition.position.y, transform.position.z);
         transform.position = movePosition;
         OnElevatorStoped?.Invoke(m_currentFloorIndex, transform.position);

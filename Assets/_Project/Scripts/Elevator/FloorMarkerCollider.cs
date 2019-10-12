@@ -16,7 +16,7 @@ public class FloorMarkerCollider : MonoBehaviour
     }
 
     void Update()
-    {
+    {/*
         if (Input.GetMouseButtonDown(0))
         {
             lights[0].enabled = false;
@@ -26,7 +26,7 @@ public class FloorMarkerCollider : MonoBehaviour
         {
             lights[0].enabled = true;
             lights[1].enabled = true;
-        }
+        }*/
     }
 
     private void OnTriggerEnter(Collider other)
