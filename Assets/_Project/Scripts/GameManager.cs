@@ -213,7 +213,7 @@ public class GameManager : MonoBehaviour
         _waveController.SpawnedUsers++;
         user.Spawn(spawnedFloor, desiredFloor, _elevator, _charactersMaterials[desiredFloorIndex], this);
         _users.Add(user);
-        _multipleTargetCamera.Add(user.transform);
+        //_multipleTargetCamera.Add(user.transform);
     }
 
     private void HandleRestartButtonClicked()

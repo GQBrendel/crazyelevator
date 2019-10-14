@@ -76,7 +76,7 @@ public class ElevatorController : MonoBehaviour
         _userToElevatorDictionary.Remove(user);
         leavingUser.gameObject.SetActive(false);
         user.gameObject.SetActive(true);
-        _multipleTargetCamera.Remove(user.transform);
+        //_multipleTargetCamera.Remove(user.transform);
         AudioManager.instance.Play("Woohoo");
     }          
 
@@ -100,7 +100,7 @@ public class ElevatorController : MonoBehaviour
     }
     private void OnMouseDown()
     {
-        _multipleTargetCamera.SetUpdateStatus(false);
+       // _multipleTargetCamera.SetUpdateStatus(false);
         _isStoped = false;
         _mouseZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
         _mouseOffset = gameObject.transform.position - GetMouseAsWorldPoint();
@@ -115,7 +115,7 @@ public class ElevatorController : MonoBehaviour
     }
     private void OnMouseUp()
     {
-        _cameraShake.ShakeIt();
+        //_cameraShake.ShakeIt();
 
         DisableEffects();
 
