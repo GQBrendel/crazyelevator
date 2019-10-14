@@ -11,7 +11,7 @@ public class CameraShake : MonoBehaviour
     [SerializeField] private float _shakeTime = 0.2f;
     private Camera _camera;
     private MultipleTargetCamera _multipleTargetCamera;
-
+    
     private void Awake()
     {
         _camera = GetComponent<Camera>();
@@ -20,12 +20,12 @@ public class CameraShake : MonoBehaviour
 
     public void ShakeIt()
     {
-        cameraInitialPosition = _camera.transform.position;
+        //cameraInitialPosition = _camera.transform.position;
         InvokeRepeating("StartCameraShaking", 0f, 0.005f);
         Invoke("StopCameraShaking", _shakeTime);
     }
 
-    private void StartCameraShaking()
+  /*  private void StartCameraShaking()
     {
         _multipleTargetCamera.SetUpdateStatus(false);
         float cameraShakingOffsetX = Random.value * _shakeMagnitude * 2 - _shakeMagnitude;
@@ -41,6 +41,6 @@ public class CameraShake : MonoBehaviour
         _multipleTargetCamera.SetUpdateStatus(true);
         CancelInvoke("StartCameraShaking");
         _camera.transform.position = cameraInitialPosition;
-    }
+    }*/
 
 }

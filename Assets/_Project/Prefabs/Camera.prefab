@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9040949207034726770}
   - component: {fileID: 9040949207034726771}
   - component: {fileID: 9040949207034726775}
-  - component: {fileID: 1343646578}
+  - component: {fileID: 892467239}
   m_Layer: 8
   m_Name: Camera
   m_TagString: MainCamera
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 9040949207034726780}
   m_LocalRotation: {x: 0.11771062, y: 0.00012839309, z: -0.0010831683, w: 0.99304736}
   m_LocalPosition: {x: -54.63, y: 32, z: -74.052}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.20043181, y: 0.14689729, z: 0.13707504}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -92,7 +92,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9040949207034726780}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 42fce52557e8a364ebdc91494a1d9b47, type: 3}
   m_Name: 
@@ -100,12 +100,13 @@ MonoBehaviour:
   _targets:
   - {fileID: 0}
   - {fileID: 0}
-  _offSet: {x: 0, y: 35, z: -145.8}
+  - {fileID: 0}
+  _offSet: {x: -0.9, y: 50, z: -125}
   _smoothTime: 0.5
   _minZoom: 40
   _maxZoom: 10
   _zomLimiter: 50
---- !u!114 &1343646578
+--- !u!114 &892467239
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -114,8 +115,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 9040949207034726780}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a33f35b658afafe48b9ef05a3ffb08e1, type: 3}
+  m_Script: {fileID: 11500000, guid: 238b57f7ec249f34f84b1ad254f7169e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shakeMagnitude: 0.05
-  _shakeTime: 0.2
+  targetFoco: {fileID: 0}
