@@ -23,6 +23,9 @@ TextureImporter:
   - first:
       213: -5413589531064507159
     second: UIGame2_6
+  - first:
+      213: -7979487973314286800
+    second: UIGame2_7
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -141,10 +144,10 @@ TextureImporter:
       name: UIGame2_0
       rect:
         serializedVersion: 2
-        x: 177
-        y: 986
+        x: 147
+        y: 1060
         width: 567
-        height: 193
+        height: 141
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,7 +155,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a7790f33f0f57c847a130b1a7c124bda
+      spriteID: 09efe08243f16784fb7c054d73f3641a
       internalID: -8952006269039834836
       vertices: []
       indices: 
@@ -162,10 +165,10 @@ TextureImporter:
       name: UIGame2_1
       rect:
         serializedVersion: 2
-        x: 187
-        y: 859
-        width: 400
-        height: 91
+        x: 155
+        y: 927
+        width: 563
+        height: 123
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -173,7 +176,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ebbd42cadb055344d8bda43a6293dc8d
+      spriteID: 991710e05d84a1b4ab5512223593f8a3
       internalID: 2043279614123797858
       vertices: []
       indices: 
@@ -183,10 +186,10 @@ TextureImporter:
       name: UIGame2_2
       rect:
         serializedVersion: 2
-        x: 602
-        y: 863
-        width: 80
-        height: 73
+        x: 162
+        y: 824
+        width: 399
+        height: 91
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -194,7 +197,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c96f6f864c43d6b439f3c2aa1e6fa6c4
+      spriteID: b4b9b6c4756be36468455d7a4499ba5a
       internalID: -5894087870374890044
       vertices: []
       indices: 
@@ -204,10 +207,10 @@ TextureImporter:
       name: UIGame2_3
       rect:
         serializedVersion: 2
-        x: 718
-        y: 886
-        width: 23
-        height: 26
+        x: 585
+        y: 831
+        width: 79
+        height: 74
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -215,7 +218,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 56733980463e4be4bade6615873946fd
+      spriteID: b4242d1c34430ec40b5f56a6a77a0ea6
       internalID: -2320360920511770185
       vertices: []
       indices: 
@@ -225,10 +228,10 @@ TextureImporter:
       name: UIGame2_4
       rect:
         serializedVersion: 2
-        x: 79
-        y: 133
-        width: 867
-        height: 685
+        x: 699
+        y: 825
+        width: 72
+        height: 79
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -236,7 +239,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9b5b0dd7c08889546bac2a3637e83227
+      spriteID: af9ff0dbb71fba44db10b7032f459ec9
       internalID: 5364333473587884213
       vertices: []
       indices: 
@@ -246,7 +249,28 @@ TextureImporter:
       name: UIGame2_5
       rect:
         serializedVersion: 2
-        x: 295
+        x: 74
+        y: 198
+        width: 813
+        height: 561
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d4bd2b3165fb054fb434ac37b714e23
+      internalID: -5301388200661369721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UIGame2_6
+      rect:
+        serializedVersion: 2
+        x: 268
         y: 5
         width: 176
         height: 90
@@ -257,17 +281,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 76d69e68c94d9074d831829ef0016dd4
-      internalID: -5301388200661369721
+      spriteID: c87de416f5a305047bd4926a64ca6bbb
+      internalID: -5413589531064507159
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UIGame2_6
+      name: UIGame2_7
       rect:
         serializedVersion: 2
-        x: 538
+        x: 511
         y: 3
         width: 176
         height: 90
@@ -278,8 +302,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a39b8daba0df6904cad995ce5bed9a51
-      internalID: -5413589531064507159
+      spriteID: a074212d7958c2748aa0151916327e9e
+      internalID: -7979487973314286800
       vertices: []
       indices: 
       edges: []
