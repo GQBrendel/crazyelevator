@@ -9,13 +9,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6217909945158802395}
-  - component: {fileID: 1232219553135657891}
+  - component: {fileID: 3474525801089198661}
+  - component: {fileID: 2932000213434140578}
   m_Layer: 0
   m_Name: commode
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 1
   m_IsActive: 1
 --- !u!4 &6217909945158802395
 Transform:
@@ -31,8 +32,16 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!137 &1232219553135657891
-SkinnedMeshRenderer:
+--- !u!33 &3474525801089198661
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6922364672684976584}
+  m_Mesh: {fileID: -3118166142289442208, guid: bc76cf6c04088ae48bce2b69cfbd6690, type: 3}
+--- !u!23 &2932000213434140578
+MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -68,15 +77,3 @@ SkinnedMeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  serializedVersion: 2
-  m_Quality: 0
-  m_UpdateWhenOffscreen: 0
-  m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: -3118166142289442208, guid: bc76cf6c04088ae48bce2b69cfbd6690, type: 3}
-  m_Bones: []
-  m_BlendShapeWeights: []
-  m_RootBone: {fileID: 0}
-  m_AABB:
-    m_Center: {x: 0, y: 0, z: 0.00000014901161}
-    m_Extent: {x: 1.7460684, y: 0.7821835, z: 0.7598704}
-  m_DirtyAABB: 0
